@@ -28,23 +28,23 @@
                         {{ csrf_field() }}
                         <div class="form-group">
                             <textarea name="body" id="body" class="form-control"
-                                      placeholder="Have something to say?"></textarea>
+                                      placeholder="{{ __('Have something to say?') }}"></textarea>
                         </div>
 
                         <button type="submit" class="btn btn-default">{{ __('Post') }}</button>
                     </form>
                 @else
-                    <p class="text-center">{!! __('Please sign in to participate in this discussion.', ['link' => route('login')]) !!}
+                    <p class="text-center">{!! __('Please <a href=:link>sign in</a> to participate in this discussion', ['link' => '"'.route('login').'"']) !!}.
                 @endif
             </div>
             <div class="col-md-4">
                 <div class="panel panel-default">
 
                     <div class="panel-body">
-                        <p>{!!  __('This thread was created by', [
+                        <p>{!!  __('This thread was created :time by :link', [
                         'time' => $thread->created_at->diffForHumans(),
                         'link' => '<a href="#">'.$thread->creator->name.'</a>'
-                        ] ) !!}. {{ __('The thread has replies', ['count' => $thread->replies_count]) }}.</p>
+                        ] ) !!}. {{ __('The thread has :count replies', ['count' => $thread->replies_count]) }}.</p>
                     </div>
                 </div>
             </div>
