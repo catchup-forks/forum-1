@@ -12,7 +12,7 @@ class FavoritesTest extends TestCase
     public function testGuestsCanNotFavoriteAnything()
     {
         $this->expectException('Illuminate\Auth\AuthenticationException');
-        $this->post('/favorites/1/favorite');
+        $this->post('/replies/1/favorite');
     }
 
     public function testAnAuthenticatedUserCanFavoriteReplies()
@@ -21,7 +21,7 @@ class FavoritesTest extends TestCase
 
         $reply = create('App\Reply');
 
-        $this->post('/favorites/' . $reply->id . '/favorite');
+        $this->post('/replies/' . $reply->id . '/favorite');
 
         $this->assertCount(1, $reply->favorites);
     }
@@ -33,8 +33,8 @@ class FavoritesTest extends TestCase
         $reply = create('App\Reply');
 
         try {
-            $this->post('/favorites/' . $reply->id . '/favorite');
-            $this->post('/favorites/' . $reply->id . '/favorite');
+            $this->post('/replies/' . $reply->id . '/favorite');
+            $this->post('/replies/' . $reply->id . '/favorite');
         } catch (\Exception $e) {
             $this->fail('Did not expect the same record twice');
         }

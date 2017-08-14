@@ -117,31 +117,4 @@ class ThreadController extends Controller
         //
     }
 
-    /**
-     * @param Channel $channel
-     * @return \Illuminate\Database\Query\Builder|\Illuminate\Support\Collection|static
-     */
-    private function getThreads(Channel $channel)
-    {
-        $threads = $this->filterThreadsByChannel($channel);
-
-        $this->filterThreadsByUsername($threads);
-
-        $threads = $threads->get();
-
-        return $threads;
-    }
-
-
-    /**
-     * @param Channel $channel
-     */
-    private function filterThreadsByChannel(Channel $channel)
-    {
-        if (!$channel->exists) {
-            return Thread::latest();
-        }
-
-        return $channel->threads()->latest();
-    }
 }
