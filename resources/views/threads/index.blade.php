@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Forum Threads</div>
+                    <div class="panel-heading">{{ __('Forum Threads') }}</div>
 
                     <div class="panel-body">
                         @foreach($threads as $thread)
@@ -15,7 +15,7 @@
                                     <strong>{{ $thread->replies_count }} {{ str_plural('answer', $thread->replies_count) }}</strong>
                                 </div>
 
-                                <div class="body">{{ $thread->title }}</div>
+                                <div class="body">{{ $thread->body }}</div>
                                 <hr>
                             </article>
                         @endforeach

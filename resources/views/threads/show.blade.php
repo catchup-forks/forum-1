@@ -6,7 +6,7 @@
             <div class="col-md-8">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <a href="#">{{ $thread->creator->name }}</a> posted: {{ $thread->title }}
+                        <a href="#">{{ $thread->creator->name }}</a> {{ __('posted') }}: {{ $thread->title }}
                     </div>
 
                     <div class="panel-body">
@@ -31,21 +31,20 @@
                                       placeholder="Have something to say?"></textarea>
                         </div>
 
-                        <button type="submit" class="btn btn-default">Post</button>
+                        <button type="submit" class="btn btn-default">{{ __('Post') }}</button>
                     </form>
                 @else
-                    <p class="text-center">Please <a href="{{ route('login') }}">sign in</a> to participate in this
-                        discussion.
-                    </p>
+                    <p class="text-center">{!! __('Please sign in to participate in this discussion.', ['link' => route('login')]) !!}
                 @endif
             </div>
             <div class="col-md-4">
                 <div class="panel panel-default">
 
                     <div class="panel-body">
-                        <p>This thread was created {{ $thread->created_at->diffForHumans() }} by <a
-                                    href="#">{{ $thread->creator->name }}</a>. Is
-                            has {{ $thread->replies_count }} {{ str_plural('answer', $thread->replies_count) }}.</p>
+                        <p>{!!  __('This thread was created by', [
+                        'time' => $thread->created_at->diffForHumans(),
+                        'link' => '<a href="#">'.$thread->creator->name.'</a>'
+                        ] ) !!}. {{ __('The thread has replies', ['count' => $thread->replies_count]) }}.</p>
                     </div>
                 </div>
             </div>

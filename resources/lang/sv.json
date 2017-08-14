@@ -1,0 +1,128 @@
+{
+  "Forum": "Forum",
+  "All Threads": "Alla trådar",
+  "My Threads": "Mina trådar",
+  "Popular All Time": "Mest populära någonsin",
+  "New Thread": "Ny tråd",
+  "Channels": "Kanaler",
+
+  "Create A New Thread": "Skapa ny tråd",
+  "Choose A Channel:": "Välj en kanal:",
+  "Choose one...": "Välj en...",
+  "Title:": "Rubrik:",
+  "Body:": "Inlägg:",
+  "Publish": "Publicera",
+  "Forum Threads": "Forumtrådar",
+  "said": "sa",
+  "posted": "postade",
+  "Post": "Skicka",
+
+  "This thread was created by": "Denna tråden skapades för :time av :link",
+  "The thread has replies": "Tråden har :count svar",
+  "Please sign in to participate in this discussion.": "<a href=\":link\">Logga in</a> för att delta i diskussionen.",
+
+  "Login": "Logga in",
+  "Register": "Skapa konto",
+  "Logout": "Logga ut",
+  "E-Mail Address": "E-post adress",
+  "Password": "Lösenord",
+  "Confirm Password": "Upprepa lösenord",
+  "Remember Me": "Kom ihåg mig",
+  "Forgot Your Password?": "Glömt ditt lösenord?",
+  "Reset Password": "Återställ lösenord",
+  "Send Password Reset Link": "Skicka länk för återställning",
+
+  "Name": "Namn",
+
+  "auth": {
+    "failed": "Uppgifterna matchar inte något konto.",
+    "throttle": "För många inloggningsförsök. Var god försök igen om :seconds sekunder."
+  },
+  "pagination": {
+    "previous": "&laquo; Föregående",
+    "next": "Nästa &raquo;"
+  },
+  "passwords": {
+    "password": "Lösenord måste vara minst 6 tecken och matcha upprepningen.",
+    "reset": "Ditt lösenord har återställts!",
+    "sent": "Vi har mailat din länk för återställning av lösenord!",
+    "token": "Denna återställningsnyckel är ogiltig.",
+    "user": "Vi kan inte hitta något konto med den e-postadressen."
+  },
+  "validation": {
+    "accepted": ":attribute måste accepteras.",
+    "active_url": ":attribute är inte en giltig URL.",
+    "after": ":attribute måste vara ett datum efter :date.",
+    "after_or_equal": ":attribute måste vara ett datum efter eller lika med :date.",
+    "alpha": ":attribute får bara innehålla bokstäver.",
+    "alpha_dash": ":attribute får bara innehålla bokstäver, siffror, och bindestreck.",
+    "alpha_num": ":attribute får bara innehålla bokstäver och siffror.",
+    "array": ":attribute måste vara en array.",
+    "before": ":attribute måste vara ett datum före :date.",
+    "before_or_equal": ":attribute måste vara ett datum före eller lika med :date.",
+    "between": {
+      "numeric": ":attribute måste vara mellan :min och :max.",
+      "file": ":attribute måste vara mellan :min och :max kilobytes.",
+      "string": ":attribute måste vara mellan :min och :max tecken.",
+      "array": ":attribute måste vara mellan :min och :max st."
+    },
+    "boolean": ":attribute måste vara sant eller falskt.",
+    "confirmed": ":attribute upprepningen matchar inte.",
+    "date": ":attribute är inte ett giltigt datum.",
+    "date_format": ":attribute matchar inte formatet :format.",
+    "different": ":attribute och :other måste vara olika.",
+    "digits": ":attribute måste vara :digits siffror.",
+    "digits_between": ":attribute måste vara mellan :min och :max siffror.",
+    "dimensions": ":attribute har ogiltiga dimensioner.",
+    "distinct": ":attribute har ett dublicerat värde.",
+    "email": ":attribute måste vara en giltig e-postadress.",
+    "exists": "Vald :attribute är ogiltig.",
+    "file": ":attribute måste vara en fil.",
+    "filled": ":attribute måste ha ett värde.",
+    "image": ":attribute måste vara en bild.",
+    "in": "Vald :attribute är ogiltig.",
+    "in_array": ":attribute existerar inte i :other.",
+    "integer": ":attribute måste vara ett nummer.",
+    "ip": ":attribute måste vara en giltig IP adress.",
+    "ipv4": ":attribute måste vara en giltig IPv4 adress.",
+    "ipv6": ":attribute måste vara en giltig IPv6 adress.",
+    "json": ":attribute måste vara en giltig JSON sträng.",
+    "max": {
+      "numeric": ":attribute får inte vara större än :max.",
+      "file": ":attribute får inte vara större än :max kilobytes.",
+      "string": ":attribute får inte vara större än :max tecken.",
+      "array": ":attribute får inte ha fler än :max st."
+    },
+    "mimes": ":attributemåste vara en fil av typ: :values.",
+    "mimetypes": ":attributemåste vara en fil av typ: :values.",
+    "min": {
+      "numeric": ":attribute måste vara minst :min.",
+      "file": ":attribute måste vara minst :min kilobytes.",
+      "string": ":attribute måste vara minst :min characters.",
+      "array": ":attribute måste ha minst :min st."
+    },
+    "not_in": "Vald :attribute är ogiltig.",
+    "numeric": ":attribute måste vara ett nummer.",
+    "present": ":attribute måste finnas.",
+    "regex": ":attribute format är ogiltigt.",
+    "required": ":attribute är obligatoriskt.",
+    "required_if": ":attribute är ogiltigatoriskt när :other är :value.",
+    "required_unless": ":attribute är ogiltigatoriskt om inte :other är i :values.",
+    "required_with": ":attribute är ogiltigatoriskt när :values existerar.",
+    "required_with_all": ":attribute är ogiltigatoriskt när :values existerar.",
+    "required_without": ":attribute är ogiltigatoriskt när :values inte existerar.",
+    "required_without_all": ":attribute är ogiltigatoriskt när ingen av :values existerar.",
+    "same": ":attribute och :other måste matcha.",
+    "size": {
+      "numeric": ":attribute måste vara :size.",
+      "file": ":attribute måste vara :size kilobytes.",
+      "string": ":attribute måste vara :size tecken.",
+      "array": ":attribute måste innehålla :size st."
+    },
+    "string": ":attribute måste vara en sträng.",
+    "timezone": ":attribute måste vara en giltig tidszon.",
+    "unique": ":attribute har redan tagits.",
+    "uploaded": ":attribute misslyckades att ladda upp.",
+    "url": ":attribute format är ogiltigt."
+  }
+}

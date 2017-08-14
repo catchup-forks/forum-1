@@ -49,19 +49,19 @@
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="false">Browse <span class="caret"></span></a>
+                           aria-expanded="false">{{ __('Forum') }} <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="/threads">All Threads</a></li>
+                            <li><a href="/threads">{{ __('All Threads') }}</a></li>
                             @if (auth()->check())
-                                <li><a href="/threads?by={{ auth()->user()->name }}">My Threads</a></li>
+                                <li><a href="/threads?by={{ auth()->user()->name }}">{{ __('My Threads') }}</a></li>
                             @endif
-                            <li><a href="/threads?popular=1">Popular All Time</a></li>
+                            <li><a href="/threads?popular=1">{{ __('Popular All Time') }}</a></li>
                         </ul>
                     </li>
-                    <li><a href="/threads/create">New Thread</a></li>
+                    <li><a href="/threads/create">{{ __('New Thread') }}</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="false">Channels <span class="caret"></span></a>
+                           aria-expanded="false">{{ __('Channels') }} <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             @foreach($channels as $channel)
                                 <li><a href="/threads/{{ $channel->slug }}">{{ $channel->name }}</a></li>
@@ -74,8 +74,8 @@
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
                     @if (Auth::guest())
-                        <li><a href="{{ route('login') }}">Login</a></li>
-                        <li><a href="{{ route('register') }}">Register</a></li>
+                        <li><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
+                        <li><a href="{{ route('register') }}">{{ __('Register') }}</a></li>
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
@@ -88,7 +88,7 @@
                                     <a href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        Logout
+                                        {{ __('Logout') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST"
