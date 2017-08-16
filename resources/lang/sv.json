@@ -1,5 +1,5 @@
 {
-  "Forum": "Forum",
+  "Forum": "Trådar",
   "All Threads": "Alla trådar",
   "My Threads": "Mina trådar",
   "Popular All Time": "Mest populära någonsin",
@@ -23,6 +23,7 @@
   "Please <a href=:link>sign in</a> to participate in this discussion": "<a href=:link>Logga in</a> för att delta i diskussionen.",
   "answer": "svar",
   "answers": "svar",
+  "There are no threads here.": "Det finns inga trådar här.",
 
   "My Profile": "Min profil",
   "Signed Up :time": "Skapade konto för :time",

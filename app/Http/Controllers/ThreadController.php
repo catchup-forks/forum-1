@@ -119,10 +119,15 @@ class ThreadController extends Controller
                 return response(['status' => 'Permission Denied'], 403);
             }
 
-            return redirect('login');
+            return abort(403, 'You do not have permission to do this.');
+
         }
 
         $thread->delete();
+
+        if (\request()->wantsJson()) {
+            return response([], 204);
+        }
 
         return redirect('threads');
     }

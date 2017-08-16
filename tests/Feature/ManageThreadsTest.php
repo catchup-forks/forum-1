@@ -76,6 +76,8 @@ class ManageThreadsTest extends TestCase
 
     public function testAUserCanNotDeleteOthersThreads()
     {
+        $this->expectException('Symfony\Component\HttpKernel\Exception\HttpException');
+
         $user = create('App\User');
         $user2 = create('App\User');
 
@@ -84,8 +86,6 @@ class ManageThreadsTest extends TestCase
         $thread = create('App\Thread', ['user_id' => $user2->id]);
 
         $this->delete($thread->path());
-
-        $this->assertDatabaseHas('threads', ['id' => $thread->id]);
 
     }
 }

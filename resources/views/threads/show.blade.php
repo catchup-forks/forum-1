@@ -6,7 +6,21 @@
             <div class="col-md-8">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <a href="{{ route('profile', $thread->creator) }}">{{ $thread->creator->name }}</a> {{ __('posted') }}: {{ $thread->title }}
+                        <div class="level">
+                            <div class="flex">
+                                <a href="{{ route('profile', $thread->creator) }}">{{ $thread->creator->name }}</a> {{ __('posted') }}
+                                : {{ $thread->title }}
+                            </div>
+
+                            @if (auth()->check() && auth()->id() == $thread->user_id)
+                                <form action="{{ $thread->path() }}" method="POST">
+                                    {{ csrf_field() }}
+                                    {{ method_field('DELETE') }}
+
+                                    <input type="submit" class="btn btn-default" value="Delete">
+                                </form>
+                            @endif
+                        </div>
                     </div>
 
                     <div class="panel-body">
@@ -34,7 +48,8 @@
                         <button type="submit" class="btn btn-default">{{ __('Post') }}</button>
                     </form>
                 @else
-                    <p class="text-center">{!! __('Please <a href=:link>sign in</a> to participate in this discussion', ['link' => '"'.route('login').'"']) !!}.
+                    <p class="text-center">{!! __('Please <a href=:link>sign in</a> to participate in this discussion', ['link' => '"'.route('login').'"']) !!}
+                        .
                 @endif
             </div>
             <div class="col-md-4">
