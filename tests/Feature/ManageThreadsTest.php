@@ -64,7 +64,7 @@ class ManageThreadsTest extends TestCase
 
         $this->signIn($user);
 
-        $thread = create('App\Thread', ['user_id' => $user->id]);
+        $thread = create('App\Thread', ['user_id' => auth()->id()]);
         $reply = create('App\Reply', ['thread_id' => $thread->id]);
 
         $this->delete($thread->path());

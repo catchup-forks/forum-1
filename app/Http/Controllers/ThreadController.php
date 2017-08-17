@@ -103,7 +103,7 @@ class ThreadController extends Controller
      */
     public function update(Request $request, Thread $thread)
     {
-        //
+        $this->authorize('update', $thread);
     }
 
     /**
@@ -114,14 +114,8 @@ class ThreadController extends Controller
      */
     public function destroy($channelId, Thread $thread)
     {
-        if ($thread->user_id != auth()->id()) {
-            if (\request()->wantsJson()) {
-                return response(['status' => 'Permission Denied'], 403);
-            }
 
-            return abort(403, 'You do not have permission to do this.');
-
-        }
+        $this->authorize('delete', $thread);
 
         $thread->delete();
 

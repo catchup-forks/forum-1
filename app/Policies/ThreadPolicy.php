@@ -10,6 +10,10 @@ class ThreadPolicy
 {
     use HandlesAuthorization;
 
+    public function before(){
+        // TODO: Validate that the user is admin over threads or something to allow everything
+    }
+
     /**
      * Determine whether the user can view the thread.
      *
@@ -42,7 +46,7 @@ class ThreadPolicy
      */
     public function update(User $user, Thread $thread)
     {
-        //
+        return $user->id == $thread->user_id;
     }
 
     /**
@@ -54,6 +58,6 @@ class ThreadPolicy
      */
     public function delete(User $user, Thread $thread)
     {
-        //
+        return $user->id == $thread->user_id;
     }
 }
