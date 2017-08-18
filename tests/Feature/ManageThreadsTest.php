@@ -76,7 +76,7 @@ class ManageThreadsTest extends TestCase
 
     public function testAUserCanNotDeleteOthersThreads()
     {
-        $this->expectException('Symfony\Component\HttpKernel\Exception\HttpException');
+        $this->expectException('Illuminate\Auth\Access\AuthorizationException');
 
         $user = create('App\User');
         $user2 = create('App\User');
