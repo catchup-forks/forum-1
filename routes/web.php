@@ -21,7 +21,9 @@ Route::get('/threads/create', 'ThreadController@create');
 Route::get('/threads/{channel}', 'ThreadController@index');
 Route::get('/threads/{channel}/{thread}', 'ThreadController@show')->name('thread');
 Route::delete('/threads/{channel}/{thread}', 'ThreadController@destroy');
+
 Route::post('/threads/{channel}/{thread}/replies', 'ReplyController@store')->name('reply_to_thead');
+Route::delete('/replies/{reply}', 'ReplyController@destroy');
 
 Route::post('/replies/{reply}/favorite', 'FavoriteController@store');
 

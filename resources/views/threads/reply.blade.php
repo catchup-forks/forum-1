@@ -1,5 +1,5 @@
 <div class="panel panel-default">
-    <div class="panel-heading">
+    <div id="reply-{{ $reply->id }}" class="panel-heading">
         <div class="level">
             <h5 class="flex">
                 <a href="{{ route('profile', $reply->owner) }}">{{ $reply->owner->name }}</a> {{ __('said') }}:
@@ -23,4 +23,13 @@
             {{ $reply->body }}
         </article>
     </div>
+    @can('delete', $reply)
+        <div class="panel-footer">
+            <form action="/replies/{{ $reply->id }}" method="post">
+                {{ csrf_field() }}
+                {{ method_field('DELETE') }}
+                <button class="btn btn-danger btn-xs" type="submit">Delete</button>
+            </form>
+        </div>
+    @endcan
 </div>
