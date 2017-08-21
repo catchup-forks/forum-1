@@ -15,6 +15,9 @@ window.flash = function(message) {
     window.events.$emit('flash', message);
 };
 
+window.lang = require( '../../lang/sv.json' );
+
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -22,6 +25,7 @@ window.flash = function(message) {
  */
 
 Vue.component('flash', require('./components/Flash.vue'));
+Vue.component('reply', require('./components/Reply.vue'));
 
 const app = new Vue({
     el: '#app'

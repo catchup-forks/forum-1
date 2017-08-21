@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Reply;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -46,5 +47,36 @@ class ParticipateInForumTest extends TestCase
         $this->delete('/replies/' . $reply->id);
 
         $this->assertDatabaseMissing('replies', ['id' => $reply->id]);
+    }
+
+    public function testAnAutorizedUserCanUpdateItsReplies()
+    {
+        $this->signIn();
+
+        $reply = create('App\Reply', ['user_id' => auth()->id()]);
+
+        $this->patch('/replies/' . $reply->id, ['body' => 'hej']);
+
+        $resultReply = Reply::find($reply->id);
+        $this->assertEquals('hej', $resultReply->body);
+    }
+
+    public function testUnAuthorizedUsersCannotEditReplies()
+    {
+        $this->expectException('Illuminate\Auth\AuthenticationException');
+        $reply = create('App\Reply');
+
+        $this->patch('/replies/' . $reply->id, ['body' => 'hej']);
+    }
+
+    public function testAuthorizedUsersCannotEditOthersReplies()
+    {
+        $this->expectException('Illuminate\Auth\Access\AuthorizationException');
+
+        $this->signIn();
+
+        $reply = create('App\Reply');
+
+        $this->patch('/replies/' . $reply->id, ['body' => 'hej']);
     }
 }

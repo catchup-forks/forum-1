@@ -22,9 +22,15 @@ class ReplyController extends Controller
 
         return back()->with('flash', __('Your reply has been published!'));
     }
+    
+    public function update(Reply $reply){
+        $this->authorize('update', $reply);
 
-    public function destroy(Reply $reply){
+        $reply->update(\request(['body']));
+    }
 
+    public function destroy(Reply $reply)
+    {
         $this->authorize('delete', $reply);
 
         $reply->delete();

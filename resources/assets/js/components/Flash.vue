@@ -22,7 +22,12 @@
         },
         methods: {
             flash(message) {
-                this.body = message;
+                let flashMessage = message;
+                if (window.lang[message]) {
+                    flashMessage = window.lang[message];
+                }
+
+                this.body = flashMessage;
                 this.show = true;
 
                 this.hide();
