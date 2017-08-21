@@ -19,6 +19,6 @@ class ReplyController extends Controller
             'user_id' => auth()->id(),
         ]);
 
-        return back();
+        return back()->with('flash', __('Your reply has been published!'));
     }
 }
