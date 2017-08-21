@@ -8,26 +8,13 @@
         </div>
 
         <div class="row">
-            @foreach ($threads as $thread)
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <div class="level">
-                            <div class="flex">
-                                <a href="#">{{ $thread->creator->name }}</a> {{ __('posted') }}: <a href="{{ route('thread', ['thread' => $thread, 'channel' => $thread->channel]) }}">{{ $thread->title }}</a>
-                            </div>
-                            <span>{{ $thread->created_at->diffForHumans() }}</span>
-                        </div>
-                    </div>
-
-                    <div class="panel-body">
-                        <article>
-                            {{ $thread->body }}
-                        </article>
-                    </div>
-                </div>
+            @foreach ($activitiesByDate as $date => $activities)
+                <h3 class="page-header">{{ $date }}</h3>
+                @foreach ($activities as $activity)
+                    @include("profiles.activities.{$activity->type}")
+                @endforeach
             @endforeach
 
-            {{ $threads->links() }}
         </div>
     </div>
 
