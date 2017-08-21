@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Activity;
 use App\Thread;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
@@ -66,11 +67,14 @@ class ManageThreadsTest extends TestCase
 
         $thread = create('App\Thread', ['user_id' => auth()->id()]);
         $reply = create('App\Reply', ['thread_id' => $thread->id]);
+        $this->assertCount(2, Activity::all());
+
 
         $this->delete($thread->path());
 
         $this->assertDatabaseMissing('threads', ['id' => $thread->id]);
         $this->assertDatabaseMissing('replies', ['id' => $reply->id]);
+        $this->assertCount(0, Activity::all());
 
     }
 

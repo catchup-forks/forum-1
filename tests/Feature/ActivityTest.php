@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Activity;
+use Carbon\Carbon;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
@@ -43,6 +44,24 @@ class ActivityTest extends TestCase
 
         // Assert 2 since 1 for Reply and 1 for associated Thread
         $this->assertEquals(2, Activity::count());
+
+    }
+
+    public function testItFetchesAnActivityFeedForAUser()
+    {
+        $this->signIn();
+
+        create('App\Thread', ['user_id' => auth()->id()], 2);
+        auth()->user()->activity()->first()->update(['created_at' => Carbon::now()->subWeek()]);
+
+        $feed = Activity::feed(auth()->user(), 50);
+
+        $this->assertTrue($feed->keys()->contains(
+            Carbon::now()->format('Y-m-d')
+        ));
+        $this->assertTrue($feed->keys()->contains(
+            Carbon::now()->subWeek()->format('Y-m-d')
+        ));
 
     }
 }

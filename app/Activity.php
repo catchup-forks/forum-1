@@ -18,10 +18,15 @@ class Activity extends Model
         return $this->belongsTo('App\User');
     }
 
-    public static function feed(User $user)
+    public static function feed(User $user, $take = 100)
     {
-        return $user->activity()->with('subject')->get()->groupBy(function ($activity) {
-            return $activity->created_at->format('Y-m-d');
-        });
+        return static::where('user_id', $user->id)
+            ->latest()
+            ->with('subject')
+            ->take($take)
+            ->get()
+            ->groupBy(function ($activity) {
+                return $activity->created_at->format('Y-m-d');
+            });
     }
 }

@@ -15,7 +15,7 @@ class ProfileController extends Controller
     {
         return view('profiles.show', [
             'profileUser' => $user,
-            'activitiesByDate' => Activity::feed($user),
+            'activitiesByDate' => Activity::feed($user, 50),
         ]);
     }
 }
