@@ -1,10 +1,10 @@
 <script>
+    import Favorite from './Favorite.vue';
+
     export default {
         props: ['attributes'],
 
-        created() {
-            console.log(lang)
-        },
+        components: { Favorite },
 
         data() {
             return {
@@ -20,6 +20,15 @@
                 this.editing = false;
 
                 flash('Your reply is updated!')
+            },
+
+            destroy() {
+                axios.delete('/replies/' + this.attributes.id);
+
+                $(this.$el).fadeOut(300, () => {
+                    flash('Your reply is deleted!')
+                });
+
             }
         }
     }

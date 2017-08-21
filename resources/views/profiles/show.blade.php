@@ -8,15 +8,18 @@
         </div>
 
         <div class="row">
-            @foreach ($activitiesByDate as $date => $activities)
-                <h3 class="page-header">{{ $date }}</h3>
-                @foreach ($activities as $activity)
-                    @if (view()->exists("profiles.activities.{$activity->type}"))
-                        @include("profiles.activities.{$activity->type}")
-                    @endif
-                @endforeach
-            @endforeach
-
+            <div class="col-md-8">
+                @forelse ($activitiesByDate as $date => $activities)
+                    <h3 class="page-header">{{ $date }}</h3>
+                    @foreach ($activities as $activity)
+                        @if (view()->exists("profiles.activities.{$activity->type}"))
+                            @include("profiles.activities.{$activity->type}")
+                        @endif
+                    @endforeach
+                @empty
+                    <p>{{ __('There is no activity for this user yet.') }}</p>
+                @endforelse
+            </div>
         </div>
     </div>
 

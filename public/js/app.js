@@ -70,7 +70,7 @@
 "use strict";
 
 
-var bind = __webpack_require__(3);
+var bind = __webpack_require__(4);
 var isBuffer = __webpack_require__(18);
 
 /*global toString:true*/
@@ -397,10 +397,10 @@ function getDefaultAdapter() {
   var adapter;
   if (typeof XMLHttpRequest !== 'undefined') {
     // For browsers use XHR adapter
-    adapter = __webpack_require__(4);
+    adapter = __webpack_require__(5);
   } else if (typeof process !== 'undefined') {
     // For node use HTTP adapter
-    adapter = __webpack_require__(4);
+    adapter = __webpack_require__(5);
   }
   return adapter;
 }
@@ -477,6 +477,103 @@ module.exports = defaults;
 /* 2 */
 /***/ (function(module, exports) {
 
+/* globals __VUE_SSR_CONTEXT__ */
+
+// this module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle
+
+module.exports = function normalizeComponent (
+  rawScriptExports,
+  compiledTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier /* server only */
+) {
+  var esModule
+  var scriptExports = rawScriptExports = rawScriptExports || {}
+
+  // ES6 modules interop
+  var type = typeof rawScriptExports.default
+  if (type === 'object' || type === 'function') {
+    esModule = rawScriptExports
+    scriptExports = rawScriptExports.default
+  }
+
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (compiledTemplate) {
+    options.render = compiledTemplate.render
+    options.staticRenderFns = compiledTemplate.staticRenderFns
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = injectStyles
+  }
+
+  if (hook) {
+    var functional = options.functional
+    var existing = functional
+      ? options.render
+      : options.beforeCreate
+    if (!functional) {
+      // inject component registration as beforeCreate hook
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    } else {
+      // register for functioal component in vue file
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return existing(h, context)
+      }
+    }
+  }
+
+  return {
+    esModule: esModule,
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
 var g;
 
 // This works in non-strict mode
@@ -501,7 +598,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -519,7 +616,7 @@ module.exports = function bind(fn, thisArg) {
 
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -530,7 +627,7 @@ var settle = __webpack_require__(22);
 var buildURL = __webpack_require__(24);
 var parseHeaders = __webpack_require__(25);
 var isURLSameOrigin = __webpack_require__(26);
-var createError = __webpack_require__(5);
+var createError = __webpack_require__(6);
 var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(27);
 
 module.exports = function xhrAdapter(config) {
@@ -706,7 +803,7 @@ module.exports = function xhrAdapter(config) {
 
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -731,7 +828,7 @@ module.exports = function createError(message, config, code, request, response) 
 
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -743,7 +840,7 @@ module.exports = function isCancel(value) {
 
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -769,108 +866,11 @@ module.exports = Cancel;
 
 
 /***/ }),
-/* 8 */
-/***/ (function(module, exports) {
-
-/* globals __VUE_SSR_CONTEXT__ */
-
-// this module is a runtime utility for cleaner component module output and will
-// be included in the final webpack user bundle
-
-module.exports = function normalizeComponent (
-  rawScriptExports,
-  compiledTemplate,
-  injectStyles,
-  scopeId,
-  moduleIdentifier /* server only */
-) {
-  var esModule
-  var scriptExports = rawScriptExports = rawScriptExports || {}
-
-  // ES6 modules interop
-  var type = typeof rawScriptExports.default
-  if (type === 'object' || type === 'function') {
-    esModule = rawScriptExports
-    scriptExports = rawScriptExports.default
-  }
-
-  // Vue.extend constructor export interop
-  var options = typeof scriptExports === 'function'
-    ? scriptExports.options
-    : scriptExports
-
-  // render functions
-  if (compiledTemplate) {
-    options.render = compiledTemplate.render
-    options.staticRenderFns = compiledTemplate.staticRenderFns
-  }
-
-  // scopedId
-  if (scopeId) {
-    options._scopeId = scopeId
-  }
-
-  var hook
-  if (moduleIdentifier) { // server build
-    hook = function (context) {
-      // 2.3 injection
-      context =
-        context || // cached call
-        (this.$vnode && this.$vnode.ssrContext) || // stateful
-        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
-      // 2.2 with runInNewContext: true
-      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-        context = __VUE_SSR_CONTEXT__
-      }
-      // inject component styles
-      if (injectStyles) {
-        injectStyles.call(this, context)
-      }
-      // register component module identifier for async chunk inferrence
-      if (context && context._registeredComponents) {
-        context._registeredComponents.add(moduleIdentifier)
-      }
-    }
-    // used by ssr in case component is cached and beforeCreate
-    // never gets called
-    options._ssrRegister = hook
-  } else if (injectStyles) {
-    hook = injectStyles
-  }
-
-  if (hook) {
-    var functional = options.functional
-    var existing = functional
-      ? options.render
-      : options.beforeCreate
-    if (!functional) {
-      // inject component registration as beforeCreate hook
-      options.beforeCreate = existing
-        ? [].concat(existing, hook)
-        : [hook]
-    } else {
-      // register for functioal component in vue file
-      options.render = function renderWithStyleInjection (h, context) {
-        hook.call(context)
-        return existing(h, context)
-      }
-    }
-  }
-
-  return {
-    esModule: esModule,
-    exports: scriptExports,
-    options: options
-  }
-}
-
-
-/***/ }),
 /* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(10);
-module.exports = __webpack_require__(47);
+module.exports = __webpack_require__(51);
 
 
 /***/ }),
@@ -894,7 +894,7 @@ window.flash = function (message) {
   window.events.$emit('flash', message);
 };
 
-window.lang = __webpack_require__(56);
+window.lang = __webpack_require__(37);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -902,8 +902,8 @@ window.lang = __webpack_require__(56);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('flash', __webpack_require__(37));
-Vue.component('reply', __webpack_require__(45));
+Vue.component('flash', __webpack_require__(38));
+Vue.component('reply', __webpack_require__(46));
 
 var app = new Vue({
   el: '#app'
@@ -18057,7 +18057,7 @@ if (token) {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(13)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(13)(module)))
 
 /***/ }),
 /* 13 */
@@ -30744,7 +30744,7 @@ module.exports = __webpack_require__(17);
 
 
 var utils = __webpack_require__(0);
-var bind = __webpack_require__(3);
+var bind = __webpack_require__(4);
 var Axios = __webpack_require__(19);
 var defaults = __webpack_require__(1);
 
@@ -30779,9 +30779,9 @@ axios.create = function create(instanceConfig) {
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__(7);
+axios.Cancel = __webpack_require__(8);
 axios.CancelToken = __webpack_require__(34);
-axios.isCancel = __webpack_require__(6);
+axios.isCancel = __webpack_require__(7);
 
 // Expose all/spread
 axios.all = function all(promises) {
@@ -31131,7 +31131,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 "use strict";
 
 
-var createError = __webpack_require__(5);
+var createError = __webpack_require__(6);
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -31550,7 +31550,7 @@ module.exports = InterceptorManager;
 
 var utils = __webpack_require__(0);
 var transformData = __webpack_require__(31);
-var isCancel = __webpack_require__(6);
+var isCancel = __webpack_require__(7);
 var defaults = __webpack_require__(1);
 
 /**
@@ -31703,7 +31703,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 "use strict";
 
 
-var Cancel = __webpack_require__(7);
+var Cancel = __webpack_require__(8);
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -41887,22 +41887,28 @@ Vue$3.compile = compileToFunctions;
 
 module.exports = Vue$3;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
 /* 37 */
+/***/ (function(module, exports) {
+
+module.exports = {"Forum":"Trådar","All Threads":"Alla trådar","My Threads":"Mina trådar","Popular All Time":"Mest populära någonsin","New Thread":"Ny tråd","Channels":"Kanaler","Create A New Thread":"Skapa ny tråd","Choose A Channel:":"Välj en kanal:","Choose one...":"Välj en...","Title:":"Rubrik:","Body:":"Inlägg:","Publish":"Publicera","Forum Threads":"Forumtrådar","said":"sa","posted":"postade","Post":"Skicka","Edit":"Redigera","Cancel":"Avbryt","This thread was created :time by :link":"Denna tråden skapades för :time av :link","Your thread has been published!":"Din tråd har publicerats!","Your thread has been deleted!":"Din tråd har raderats!","Your reply has been published!":"Ditt svar har publicerats!","Your reply has been deleted!":"Ditt svar har raderats!","Your reply is updated!":"Ditt svar är uppdaterat!","The thread has :count replies":"Tråden har :count svar","Have something to say?":"Har du något att säga?","Please <a href=:link>sign in</a> to participate in this discussion":"<a href=:link>Logga in</a> för att delta i diskussionen.","answer":"svar","answers":"svar","There are no threads here.":"Det finns inga trådar här.","My Profile":"Min profil","Signed Up :time":"Skapade konto för :time","Login":"Logga in","Register":"Skapa konto","Logout":"Logga ut","E-Mail Address":"E-post adress","Password":"Lösenord","Confirm Password":"Upprepa lösenord","Remember Me":"Kom ihåg mig","Forgot Your Password?":"Glömt ditt lösenord?","Reset Password":"Återställ lösenord","Send Password Reset Link":"Skicka länk för återställning","Name":"Namn","auth":{"failed":"Uppgifterna matchar inte något konto.","throttle":"För många inloggningsförsök. Var god försök igen om :seconds sekunder."},"pagination":{"previous":"&laquo; Föregående","next":"Nästa &raquo;"},"passwords":{"password":"Lösenord måste vara minst 6 tecken och matcha upprepningen.","reset":"Ditt lösenord har återställts!","sent":"Vi har mailat din länk för återställning av lösenord!","token":"Denna återställningsnyckel är ogiltig.","user":"Vi kan inte hitta något konto med den e-postadressen."},"validation":{"accepted":":attribute måste accepteras.","active_url":":attribute är inte en giltig URL.","after":":attribute måste vara ett datum efter :date.","after_or_equal":":attribute måste vara ett datum efter eller lika med :date.","alpha":":attribute får bara innehålla bokstäver.","alpha_dash":":attribute får bara innehålla bokstäver, siffror, och bindestreck.","alpha_num":":attribute får bara innehålla bokstäver och siffror.","array":":attribute måste vara en array.","before":":attribute måste vara ett datum före :date.","before_or_equal":":attribute måste vara ett datum före eller lika med :date.","between":{"numeric":":attribute måste vara mellan :min och :max.","file":":attribute måste vara mellan :min och :max kilobytes.","string":":attribute måste vara mellan :min och :max tecken.","array":":attribute måste vara mellan :min och :max st."},"boolean":":attribute måste vara sant eller falskt.","confirmed":":attribute upprepningen matchar inte.","date":":attribute är inte ett giltigt datum.","date_format":":attribute matchar inte formatet :format.","different":":attribute och :other måste vara olika.","digits":":attribute måste vara :digits siffror.","digits_between":":attribute måste vara mellan :min och :max siffror.","dimensions":":attribute har ogiltiga dimensioner.","distinct":":attribute har ett dublicerat värde.","email":":attribute måste vara en giltig e-postadress.","exists":"Vald :attribute är ogiltig.","file":":attribute måste vara en fil.","filled":":attribute måste ha ett värde.","image":":attribute måste vara en bild.","in":"Vald :attribute är ogiltig.","in_array":":attribute existerar inte i :other.","integer":":attribute måste vara ett nummer.","ip":":attribute måste vara en giltig IP adress.","ipv4":":attribute måste vara en giltig IPv4 adress.","ipv6":":attribute måste vara en giltig IPv6 adress.","json":":attribute måste vara en giltig JSON sträng.","max":{"numeric":":attribute får inte vara större än :max.","file":":attribute får inte vara större än :max kilobytes.","string":":attribute får inte vara större än :max tecken.","array":":attribute får inte ha fler än :max st."},"mimes":":attributemåste vara en fil av typ: :values.","mimetypes":":attributemåste vara en fil av typ: :values.","min":{"numeric":":attribute måste vara minst :min.","file":":attribute måste vara minst :min kilobytes.","string":":attribute måste vara minst :min characters.","array":":attribute måste ha minst :min st."},"not_in":"Vald :attribute är ogiltig.","numeric":":attribute måste vara ett nummer.","present":":attribute måste finnas.","regex":":attribute format är ogiltigt.","required":":attribute är obligatoriskt.","required_if":":attribute är ogiltigatoriskt när :other är :value.","required_unless":":attribute är ogiltigatoriskt om inte :other är i :values.","required_with":":attribute är ogiltigatoriskt när :values existerar.","required_with_all":":attribute är ogiltigatoriskt när :values existerar.","required_without":":attribute är ogiltigatoriskt när :values inte existerar.","required_without_all":":attribute är ogiltigatoriskt när ingen av :values existerar.","same":":attribute och :other måste matcha.","size":{"numeric":":attribute måste vara :size.","file":":attribute måste vara :size kilobytes.","string":":attribute måste vara :size tecken.","array":":attribute måste innehålla :size st."},"string":":attribute måste vara en sträng.","timezone":":attribute måste vara en giltig tidszon.","unique":":attribute har redan tagits.","uploaded":":attribute misslyckades att ladda upp.","url":":attribute format är ogiltigt."}}
+
+/***/ }),
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(38)
+  __webpack_require__(39)
 }
-var Component = __webpack_require__(8)(
+var Component = __webpack_require__(2)(
   /* script */
-  __webpack_require__(43),
-  /* template */
   __webpack_require__(44),
+  /* template */
+  __webpack_require__(45),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -41934,17 +41940,17 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(39);
+var content = __webpack_require__(40);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(41)("8f410db6", content, false);
+var update = __webpack_require__(42)("8f410db6", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -41960,10 +41966,10 @@ if(false) {
 }
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(40)(undefined);
+exports = module.exports = __webpack_require__(41)(undefined);
 // imports
 
 
@@ -41974,7 +41980,7 @@ exports.push([module.i, "\n.alert-flash {\n    position: fixed;\n    bottom: 25p
 
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports) {
 
 /*
@@ -42056,7 +42062,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -42075,7 +42081,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(42)
+var listToStyles = __webpack_require__(43)
 
 /*
 type StyleObject = {
@@ -42277,7 +42283,7 @@ function applyToTag (styleElement, obj) {
 
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports) {
 
 /**
@@ -42310,7 +42316,7 @@ module.exports = function listToStyles (parentId, list) {
 
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -42365,7 +42371,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -42391,13 +42397,13 @@ if (false) {
 }
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var Component = __webpack_require__(8)(
+var Component = __webpack_require__(2)(
   /* script */
-  __webpack_require__(46),
+  __webpack_require__(47),
   /* template */
   null,
   /* styles */
@@ -42430,18 +42436,21 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Favorite_vue__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Favorite_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Favorite_vue__);
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['attributes'],
 
-    created: function created() {
-        console.log(lang);
-    },
+    components: { Favorite: __WEBPACK_IMPORTED_MODULE_0__Favorite_vue___default.a },
+
     data: function data() {
         return {
             body: this.attributes.body,
@@ -42457,29 +42466,143 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.editing = false;
 
             flash('Your reply is updated!');
+        },
+        destroy: function destroy() {
+            axios.delete('/replies/' + this.attributes.id);
+
+            $(this.$el).fadeOut(300, function () {
+                flash('Your reply is deleted!');
+            });
         }
     }
 });
 
 /***/ }),
-/* 47 */
+/* 48 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(2)(
+  /* script */
+  __webpack_require__(49),
+  /* template */
+  __webpack_require__(50),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/Users/jimmitjoo/Sites/forum/resources/assets/js/components/Favorite.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] Favorite.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2a81a536", Component.options)
+  } else {
+    hotAPI.reload("data-v-2a81a536", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 49 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['reply'],
+
+    data: function data() {
+        return {
+            count: this.reply.favoritesCount,
+            active: this.reply.isFavorited
+        };
+    },
+
+
+    computed: {
+        classes: function classes() {
+            return ['btn', this.active ? 'btn-primary' : 'btn-default'];
+        },
+        endpoint: function endpoint() {
+            return '/replies/' + this.reply.id + '/favorite';
+        }
+    },
+
+    methods: {
+        toggle: function toggle() {
+            this.active ? this.unfavorite() : this.favorite();
+        },
+        unfavorite: function unfavorite() {
+            axios.delete(this.endpoint);
+
+            this.active = false;
+            this.count--;
+        },
+        favorite: function favorite() {
+            axios.post(this.endpoint);
+
+            this.active = true;
+            this.count++;
+        }
+    }
+});
+
+/***/ }),
+/* 50 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('button', {
+    class: _vm.classes,
+    attrs: {
+      "type": "submit"
+    },
+    on: {
+      "click": _vm.toggle
+    }
+  }, [_c('span', {
+    staticClass: "glyphicon glyphicon-heart"
+  }), _vm._v(" "), _c('span', {
+    domProps: {
+      "textContent": _vm._s(_vm.count)
+    }
+  })])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-2a81a536", module.exports)
+  }
+}
+
+/***/ }),
+/* 51 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 48 */,
-/* 49 */,
-/* 50 */,
-/* 51 */,
-/* 52 */,
-/* 53 */,
-/* 54 */,
-/* 55 */,
-/* 56 */
-/***/ (function(module, exports) {
-
-module.exports = {"Forum":"Trådar","All Threads":"Alla trådar","My Threads":"Mina trådar","Popular All Time":"Mest populära någonsin","New Thread":"Ny tråd","Channels":"Kanaler","Create A New Thread":"Skapa ny tråd","Choose A Channel:":"Välj en kanal:","Choose one...":"Välj en...","Title:":"Rubrik:","Body:":"Inlägg:","Publish":"Publicera","Forum Threads":"Forumtrådar","said":"sa","posted":"postade","Post":"Skicka","Edit":"Redigera","Cancel":"Avbryt","This thread was created :time by :link":"Denna tråden skapades för :time av :link","Your thread has been published!":"Din tråd har publicerats!","Your thread has been deleted!":"Din tråd har raderats!","Your reply has been published!":"Ditt svar har publicerats!","Your reply has been deleted!":"Ditt svar har raderats!","Your reply is updated!":"Ditt svar är uppdaterat!","The thread has :count replies":"Tråden har :count svar","Have something to say?":"Har du något att säga?","Please <a href=:link>sign in</a> to participate in this discussion":"<a href=:link>Logga in</a> för att delta i diskussionen.","answer":"svar","answers":"svar","There are no threads here.":"Det finns inga trådar här.","My Profile":"Min profil","Signed Up :time":"Skapade konto för :time","Login":"Logga in","Register":"Skapa konto","Logout":"Logga ut","E-Mail Address":"E-post adress","Password":"Lösenord","Confirm Password":"Upprepa lösenord","Remember Me":"Kom ihåg mig","Forgot Your Password?":"Glömt ditt lösenord?","Reset Password":"Återställ lösenord","Send Password Reset Link":"Skicka länk för återställning","Name":"Namn","auth":{"failed":"Uppgifterna matchar inte något konto.","throttle":"För många inloggningsförsök. Var god försök igen om :seconds sekunder."},"pagination":{"previous":"&laquo; Föregående","next":"Nästa &raquo;"},"passwords":{"password":"Lösenord måste vara minst 6 tecken och matcha upprepningen.","reset":"Ditt lösenord har återställts!","sent":"Vi har mailat din länk för återställning av lösenord!","token":"Denna återställningsnyckel är ogiltig.","user":"Vi kan inte hitta något konto med den e-postadressen."},"validation":{"accepted":":attribute måste accepteras.","active_url":":attribute är inte en giltig URL.","after":":attribute måste vara ett datum efter :date.","after_or_equal":":attribute måste vara ett datum efter eller lika med :date.","alpha":":attribute får bara innehålla bokstäver.","alpha_dash":":attribute får bara innehålla bokstäver, siffror, och bindestreck.","alpha_num":":attribute får bara innehålla bokstäver och siffror.","array":":attribute måste vara en array.","before":":attribute måste vara ett datum före :date.","before_or_equal":":attribute måste vara ett datum före eller lika med :date.","between":{"numeric":":attribute måste vara mellan :min och :max.","file":":attribute måste vara mellan :min och :max kilobytes.","string":":attribute måste vara mellan :min och :max tecken.","array":":attribute måste vara mellan :min och :max st."},"boolean":":attribute måste vara sant eller falskt.","confirmed":":attribute upprepningen matchar inte.","date":":attribute är inte ett giltigt datum.","date_format":":attribute matchar inte formatet :format.","different":":attribute och :other måste vara olika.","digits":":attribute måste vara :digits siffror.","digits_between":":attribute måste vara mellan :min och :max siffror.","dimensions":":attribute har ogiltiga dimensioner.","distinct":":attribute har ett dublicerat värde.","email":":attribute måste vara en giltig e-postadress.","exists":"Vald :attribute är ogiltig.","file":":attribute måste vara en fil.","filled":":attribute måste ha ett värde.","image":":attribute måste vara en bild.","in":"Vald :attribute är ogiltig.","in_array":":attribute existerar inte i :other.","integer":":attribute måste vara ett nummer.","ip":":attribute måste vara en giltig IP adress.","ipv4":":attribute måste vara en giltig IPv4 adress.","ipv6":":attribute måste vara en giltig IPv6 adress.","json":":attribute måste vara en giltig JSON sträng.","max":{"numeric":":attribute får inte vara större än :max.","file":":attribute får inte vara större än :max kilobytes.","string":":attribute får inte vara större än :max tecken.","array":":attribute får inte ha fler än :max st."},"mimes":":attributemåste vara en fil av typ: :values.","mimetypes":":attributemåste vara en fil av typ: :values.","min":{"numeric":":attribute måste vara minst :min.","file":":attribute måste vara minst :min kilobytes.","string":":attribute måste vara minst :min characters.","array":":attribute måste ha minst :min st."},"not_in":"Vald :attribute är ogiltig.","numeric":":attribute måste vara ett nummer.","present":":attribute måste finnas.","regex":":attribute format är ogiltigt.","required":":attribute är obligatoriskt.","required_if":":attribute är ogiltigatoriskt när :other är :value.","required_unless":":attribute är ogiltigatoriskt om inte :other är i :values.","required_with":":attribute är ogiltigatoriskt när :values existerar.","required_with_all":":attribute är ogiltigatoriskt när :values existerar.","required_without":":attribute är ogiltigatoriskt när :values inte existerar.","required_without_all":":attribute är ogiltigatoriskt när ingen av :values existerar.","same":":attribute och :other måste matcha.","size":{"numeric":":attribute måste vara :size.","file":":attribute måste vara :size kilobytes.","string":":attribute måste vara :size tecken.","array":":attribute måste innehålla :size st."},"string":":attribute måste vara en sträng.","timezone":":attribute måste vara en giltig tidszon.","unique":":attribute har redan tagits.","uploaded":":attribute misslyckades att ladda upp.","url":":attribute format är ogiltigt."}}
 
 /***/ })
 /******/ ]);

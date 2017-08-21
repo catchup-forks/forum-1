@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Reply;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
@@ -24,6 +25,18 @@ class FavoritesTest extends TestCase
         $this->post('/replies/' . $reply->id . '/favorite');
 
         $this->assertCount(1, $reply->favorites);
+    }
+
+    public function testAnAuthenticatedUserCanUnFavoriteReplies()
+    {
+        $this->signIn();
+
+        $reply = create('App\Reply');
+
+        $reply->favorite();
+
+        $this->delete('/replies/' . $reply->id . '/favorite');
+        $this->assertCount(0, $reply->favorites);
     }
 
     public function testAnAuthenticatedUserCanOnlyFavoriteRepliesOnce()

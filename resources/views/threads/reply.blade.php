@@ -7,16 +7,11 @@
                     {{ $reply->created_at->diffForHumans() }}
                 </h5>
 
-                <div>
-
-                    <form method="POST" action="/replies/{{ $reply->id }}/favorite">
-                        {{ csrf_field() }}
-                        <button class="btn btn-default" type="submit" {{ $reply->isFavorited() ? 'disabled' : '' }}>
-                            {{ $reply->favorites_count }}
-                            {{ str_plural('Favorite', $reply->favorites_count) }}
-                        </button>
-                    </form>
-                </div>
+                @if (auth()->check())
+                    <div>
+                        <favorite :reply="{{ $reply }}"></favorite>
+                    </div>
+                @endif
             </div>
         </div>
         <div class="panel-body">
@@ -35,12 +30,7 @@
             <div class="panel-footer level">
                 <button class="btn btn-default btn-xs mr-1" type="submit"
                         @click="editing = true">{{ __('Edit') }}</button>
-
-                <form action="/replies/{{ $reply->id }}" method="post">
-                    {{ csrf_field() }}
-                    {{ method_field('DELETE') }}
-                    <button class="btn btn-danger btn-xs" type="submit">{{ __('Delete') }}</button>
-                </form>
+                <button class="btn btn-danger btn-xs" type="submit" @click="destroy">{{ __('Delete') }}</button>
             </div>
         @endcan
     </div>
