@@ -84,7 +84,7 @@ class ReadThreadsTest extends TestCase
 
         $response = $this->getJson('/threads?popular=1')->json();
 
-        $this->assertEquals([11, 3, 0], array_column($response, 'replies_count'));
+        $this->assertEquals([11, 3, 0], array_column($response['data'], 'replies_count'));
 
     }
 
