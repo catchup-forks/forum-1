@@ -51,6 +51,12 @@
                         'time' => $thread->created_at->diffForHumans(),
                         'link' => '<a href="'.route('profile', $thread->creator->name).'">'.$thread->creator->name.'</a>'
                         ] ) !!}. {!! __('The thread has :count replies', ['count' => '<span v-html="repliesCount"></span>']) !!}.</p>
+
+                            <hr>
+                            <h4>{{ __('Subscribe To Thread') }}</h4>
+                            <p>
+                                <subscribe-button :active="{{ json_encode($thread->isSubscribedTo) }}"></subscribe-button>
+                            </p>
                         </div>
                     </div>
                 </div>
