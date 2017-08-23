@@ -26,8 +26,8 @@ class ParticipateInForumTest extends TestCase
         $reply = make('App\Reply');
         $this->post($thread->path() . '/replies', $reply->toArray());
 
-        $this->get($thread->path())
-            ->assertSee($reply->body);
+        $this->get($thread->path());
+        $this->assertDatabaseHas('replies', ['body' => $reply->body]);
     }
 
     public function testUnAuthorizedUsersCannotDeleteReplies()

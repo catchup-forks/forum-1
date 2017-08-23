@@ -1,4 +1,4 @@
-<reply :attributes="{{ $reply }}" inline-template v-cloak>
+<reply :data="{{ $reply }}" inline-template v-cloak>
     <div class="panel panel-default">
         <div id="reply-{{ $reply->id }}" class="panel-heading">
             <div class="level">
@@ -8,6 +8,10 @@
                 </h5>
 
                 @if (auth()->check())
+                    <div>
+                        <favorite :reply="{{ $reply }}" authorized="true"></favorite>
+                    </div>
+                @else
                     <div>
                         <favorite :reply="{{ $reply }}"></favorite>
                     </div>

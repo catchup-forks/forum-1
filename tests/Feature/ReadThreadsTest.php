@@ -88,4 +88,25 @@ class ReadThreadsTest extends TestCase
 
     }
 
+    public function testFilterUnansweredThreads()
+    {
+        create('App\Reply');
+
+        $all = $this->getJson('/threads')->json();
+        $response = $this->getJson('/threads?unanswered=1')->json();
+
+        $this->assertCount(2, $all['data']);
+        $this->assertCount(1, $response['data']);
+    }
+
+    public function testAUserCanRequestAllTheRepliesForGivenThread()
+    {
+        $thread = create('App\Thread');
+        $replies = create('App\Reply', ['thread_id' => $thread->id], 3);
+
+        $response = $this->get($thread->path() . '/replies')->json();
+
+        $this->assertCount(3, $response['data']);
+    }
+
 }

@@ -13,6 +13,14 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+    <script>
+        window.forum = {!! json_encode([
+            'user' => auth()->user(),
+            'signedIn' => auth()->check(),
+            'timezone' => config('app.timezone'),
+        ]) !!}
+    </script>
+
     <style>
         .flex {
             flex: 1;
@@ -60,6 +68,7 @@
                                 <li><a href="/threads?by={{ auth()->user()->name }}">{{ __('My Threads') }}</a></li>
                             @endif
                             <li><a href="/threads?popular=1">{{ __('Popular All Time') }}</a></li>
+                            <li><a href="/threads?unanswered=1">{{ __('Unanswered Threads') }}</a></li>
                         </ul>
                     </li>
                     <li><a href="/threads/create">{{ __('New Thread') }}</a></li>

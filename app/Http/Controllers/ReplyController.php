@@ -10,15 +10,24 @@ class ReplyController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except('index');
+    }
+
+    public function index($channel, Thread $thread)
+    {
+        return $thread->replies()->paginate(10);
     }
 
     public function store($channelId, Thread $thread)
     {
-        $thread->addReply([
+        $reply = $thread->addReply([
             'body' => \request('body'),
             'user_id' => auth()->id(),
         ]);
+
+        if (\request()->expectsJson()) {
+            return $reply->load('owner');
+        }
 
         return back()->with('flash', __('Your reply has been published!'));
     }
