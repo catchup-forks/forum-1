@@ -4,6 +4,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
+                {{ $threads->links() }}
+
                 @forelse($threads as $thread)
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -20,6 +22,8 @@
                 @empty
                     <p>{{ __('There are no threads here.') }}</p>
                 @endforelse
+
+                {{ $threads->links() }}
             </div>
         </div>
     </div>

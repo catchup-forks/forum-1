@@ -15,8 +15,15 @@ window.flash = function(message) {
     window.events.$emit('flash', message);
 };
 
-window.lang = require( '../../lang/sv.json' );
+window.lang = window.Vue.prototype.lang = require( '../../lang/sv.json' );
 
+window.Vue.prototype.authorize = function(handler) {
+    // Additional admin priviledges for example. If returning true, the user is authorized.
+
+    let user = window.forum.user;
+
+    return user ? handler(user) : false;
+};
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -25,7 +32,13 @@ window.lang = require( '../../lang/sv.json' );
  */
 
 Vue.component('flash', require('./components/Flash.vue'));
+Vue.component('replies', require('./components/Replies.vue'));
 Vue.component('reply', require('./components/Reply.vue'));
+Vue.component('paginator', require('./components/Paginator.vue'));
+Vue.component('subscribe-button', require('./components/SubscribeButton.vue'));
+
+
+Vue.component('thread-view', require('./pages/Thread.vue'));
 
 const app = new Vue({
     el: '#app'
