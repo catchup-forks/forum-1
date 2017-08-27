@@ -59796,11 +59796,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['active'],
+    props: ['active', 'authorized'],
 
     data: function data() {
         return {
-            isActive: this.active
+            isActive: this.active,
+            disabled: !this.authorized
         };
     },
 
@@ -59833,6 +59834,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('button', {
     class: _vm.classes,
+    attrs: {
+      "disabled": _vm.disabled
+    },
     on: {
       "click": _vm.subscribe
     }

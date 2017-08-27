@@ -32,6 +32,9 @@ Route::patch('/replies/{reply}', 'ReplyController@update');
 Route::post('/replies/{reply}/favorite', 'FavoriteController@store');
 Route::delete('/replies/{reply}/favorite', 'FavoriteController@destroy');
 
+Route::delete('/notifications/{notification}', 'UsersNotificationsController@destroy');
+Route::get('/notifications', 'UsersNotificationsController@index');
+
 Route::get('/profile/{user}', 'ProfileController@show')->name('profile');
 
 Auth::routes();

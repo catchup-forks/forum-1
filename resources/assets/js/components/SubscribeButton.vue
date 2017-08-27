@@ -1,13 +1,14 @@
 <template>
-    <button :class="classes" @click="subscribe"><span class="glyphicon glyphicon-ok" v-if="isActive"></span> {{ buttonText }}</button>
+    <button :class="classes" :disabled="disabled" @click="subscribe"><span class="glyphicon glyphicon-ok" v-if="isActive"></span> {{ buttonText }}</button>
 </template>
 <script>
     export default {
-        props: ['active'],
+        props: ['active', 'authorized'],
 
         data() {
             return {
-                isActive: this.active
+                isActive: this.active,
+                disabled: !this.authorized
             }
         },
 
