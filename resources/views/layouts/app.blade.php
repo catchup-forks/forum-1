@@ -8,8 +8,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    @if (isset($thread))
-        <title>{{ $thread->title . ' - ' . config('app.name', 'Laravel') }}</title>
+    @if (isset($title))
+        <title>{{ $title . ' - ' . config('app.name', 'Laravel') }}</title>
     @else
         <title>{{ config('app.name', 'Laravel') }}</title>
     @endif

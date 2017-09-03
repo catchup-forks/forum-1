@@ -14,7 +14,7 @@
 
         computed: {
             classes() {
-                return ['btn', this.isActive ? 'btn-success' : 'btn-primary'];
+                return ['btn', this.isActive ? 'btn-primary' : 'btn-default'];
             },
             buttonText() {
                 return this.isActive ? lang['Subscribed'] : lang['Subscribe'];

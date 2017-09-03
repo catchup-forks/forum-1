@@ -26,13 +26,27 @@ class ThreadController extends Controller
     {
         $threads = Thread::latest()->filter($filter);
 
-        if ($channel->exists) $threads->where('channel_id', $channel->id);
+        if ($channel->exists) {
+            $title = $channel->name;
+            $threads->where('channel_id', $channel->id);
+        } else {
+            if (request()->has('by')) {
+                $title = __('Threads by :name', ['name' => request()->input('by')]);
+            } elseif (request()->has('popular')) {
+                $title = __('Popular All Time');
+            } elseif (request()->has('unanswered')) {
+                $title = __('Unanswered threads');
+            } else {
+                $title = __('All Threads');
+            }
+
+        }
 
         $threads = $threads->paginate();
 
         if (request()->wantsJson()) return $threads;
 
-        return view('threads.index', compact('threads'));
+        return view('threads.index', ['threads' => $threads, 'title' => $title]);
     }
 
     /**
@@ -82,7 +96,7 @@ class ThreadController extends Controller
     {
         if (auth()->check()) auth()->user()->read($thread);
 
-        return view('threads.show', compact('thread'));
+        return view('threads.show', ['thread' => $thread, 'title' => $thread->title]);
     }
 
     /**

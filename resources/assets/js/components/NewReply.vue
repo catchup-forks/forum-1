@@ -11,7 +11,7 @@
             ></textarea>
         </div>
 
-        <button type="submit" class="btn btn-default" @click="addReply">{{ lang['Post'] }}</button>
+        <button type="submit" class="btn btn-primary" @click="addReply">{{ lang['Post'] }}</button>
 
     </div>
 </template>

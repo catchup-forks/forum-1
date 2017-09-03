@@ -16488,7 +16488,7 @@ return zhTw;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(128);
-module.exports = __webpack_require__(187);
+module.exports = __webpack_require__(190);
 
 
 /***/ }),
@@ -16533,9 +16533,9 @@ Vue.component('replies', __webpack_require__(11));
 Vue.component('reply', __webpack_require__(169));
 Vue.component('paginator', __webpack_require__(179));
 Vue.component('subscribe-button', __webpack_require__(182));
-Vue.component('user-notifications', __webpack_require__(196));
+Vue.component('user-notifications', __webpack_require__(185));
 
-Vue.component('thread-view', __webpack_require__(185));
+Vue.component('thread-view', __webpack_require__(188));
 
 var app = new Vue({
     el: '#app'
@@ -57497,7 +57497,7 @@ module.exports = Vue$3;
 /* 154 */
 /***/ (function(module, exports) {
 
-module.exports = {"Forum":"Trådar","All Threads":"Alla trådar","My Threads":"Mina trådar","Popular All Time":"Mest populära någonsin","New Thread":"Ny tråd","Channels":"Kanaler","Create A New Thread":"Skapa ny tråd","Choose A Channel:":"Välj en kanal:","Choose one...":"Välj en...","Title:":"Rubrik:","Body:":"Inlägg:","Publish":"Publicera","Forum Threads":"Forumtrådar","said":"sa","posted":"postade","Post":"Skicka","Save":"Spara","Edit":"Redigera","Cancel":"Avbryt","Delete":"Radera","Previous":"Föregående","Next":"Nästa","Subscribe To Thread":"Följ tråd","Subscribe":"Följ","Subscribed":"Följer","Unsubscribe":"Avfölj","This thread was created :time by :link":"Denna tråden skapades för :time av :link","Your thread has been published!":"Din tråd har publicerats!","Your thread has been deleted!":"Din tråd har raderats!","Your reply has been published!":"Ditt svar har publicerats!","Your reply has been deleted!":"Ditt svar har raderats!","Your reply is updated!":"Ditt svar är uppdaterat!","The thread has :count replies":"Tråden har :count svar","Have something to say?":"Har du något att säga?","Please <a href=:link>sign in</a> to participate in this discussion":"<a href=:link>Logga in</a> för att delta i diskussionen.","answer":"svar","answers":"svar","There are no threads here.":"Det finns inga trådar här.","My Profile":"Min profil","Signed Up :time":"Skapade konto för :time","There is no activity for this user yet.":"Det finns ingen aktivitet från denna användaren än.","Login":"Logga in","Register":"Skapa konto","Logout":"Logga ut","E-Mail Address":"E-post adress","Password":"Lösenord","Confirm Password":"Upprepa lösenord","Remember Me":"Kom ihåg mig","Forgot Your Password?":"Glömt ditt lösenord?","Reset Password":"Återställ lösenord","Send Password Reset Link":"Skicka länk för återställning","Name":"Namn","auth":{"failed":"Uppgifterna matchar inte något konto.","throttle":"För många inloggningsförsök. Var god försök igen om :seconds sekunder."},"pagination":{"previous":"&laquo; Föregående","next":"Nästa &raquo;"},"passwords":{"password":"Lösenord måste vara minst 6 tecken och matcha upprepningen.","reset":"Ditt lösenord har återställts!","sent":"Vi har mailat din länk för återställning av lösenord!","token":"Denna återställningsnyckel är ogiltig.","user":"Vi kan inte hitta något konto med den e-postadressen."},"validation":{"accepted":":attribute måste accepteras.","active_url":":attribute är inte en giltig URL.","after":":attribute måste vara ett datum efter :date.","after_or_equal":":attribute måste vara ett datum efter eller lika med :date.","alpha":":attribute får bara innehålla bokstäver.","alpha_dash":":attribute får bara innehålla bokstäver, siffror, och bindestreck.","alpha_num":":attribute får bara innehålla bokstäver och siffror.","array":":attribute måste vara en array.","before":":attribute måste vara ett datum före :date.","before_or_equal":":attribute måste vara ett datum före eller lika med :date.","between":{"numeric":":attribute måste vara mellan :min och :max.","file":":attribute måste vara mellan :min och :max kilobytes.","string":":attribute måste vara mellan :min och :max tecken.","array":":attribute måste vara mellan :min och :max st."},"boolean":":attribute måste vara sant eller falskt.","confirmed":":attribute upprepningen matchar inte.","date":":attribute är inte ett giltigt datum.","date_format":":attribute matchar inte formatet :format.","different":":attribute och :other måste vara olika.","digits":":attribute måste vara :digits siffror.","digits_between":":attribute måste vara mellan :min och :max siffror.","dimensions":":attribute har ogiltiga dimensioner.","distinct":":attribute har ett dublicerat värde.","email":":attribute måste vara en giltig e-postadress.","exists":"Vald :attribute är ogiltig.","file":":attribute måste vara en fil.","filled":":attribute måste ha ett värde.","image":":attribute måste vara en bild.","in":"Vald :attribute är ogiltig.","in_array":":attribute existerar inte i :other.","integer":":attribute måste vara ett nummer.","ip":":attribute måste vara en giltig IP adress.","ipv4":":attribute måste vara en giltig IPv4 adress.","ipv6":":attribute måste vara en giltig IPv6 adress.","json":":attribute måste vara en giltig JSON sträng.","max":{"numeric":":attribute får inte vara större än :max.","file":":attribute får inte vara större än :max kilobytes.","string":":attribute får inte vara större än :max tecken.","array":":attribute får inte ha fler än :max st."},"mimes":":attributemåste vara en fil av typ: :values.","mimetypes":":attributemåste vara en fil av typ: :values.","min":{"numeric":":attribute måste vara minst :min.","file":":attribute måste vara minst :min kilobytes.","string":":attribute måste vara minst :min characters.","array":":attribute måste ha minst :min st."},"not_in":"Vald :attribute är ogiltig.","numeric":":attribute måste vara ett nummer.","present":":attribute måste finnas.","regex":":attribute format är ogiltigt.","required":":attribute är obligatoriskt.","required_if":":attribute är ogiltigatoriskt när :other är :value.","required_unless":":attribute är ogiltigatoriskt om inte :other är i :values.","required_with":":attribute är ogiltigatoriskt när :values existerar.","required_with_all":":attribute är ogiltigatoriskt när :values existerar.","required_without":":attribute är ogiltigatoriskt när :values inte existerar.","required_without_all":":attribute är ogiltigatoriskt när ingen av :values existerar.","same":":attribute och :other måste matcha.","size":{"numeric":":attribute måste vara :size.","file":":attribute måste vara :size kilobytes.","string":":attribute måste vara :size tecken.","array":":attribute måste innehålla :size st."},"string":":attribute måste vara en sträng.","timezone":":attribute måste vara en giltig tidszon.","unique":":attribute har redan tagits.","uploaded":":attribute misslyckades att ladda upp.","url":":attribute format är ogiltigt."}}
+module.exports = {"Forum":"Trådar","All Threads":"Alla trådar","My Threads":"Mina trådar","Popular All Time":"Mest populära någonsin","New Thread":"Ny tråd","Channels":"Kanaler","Create A New Thread":"Skapa ny tråd","Choose A Channel:":"Välj en kanal:","Choose one...":"Välj en...","Title:":"Rubrik:","Body:":"Inlägg:","Publish":"Publicera","Forum Threads":"Forumtrådar","said":"sa","posted":"postade","Post":"Skicka","Save":"Spara","Edit":"Redigera","Cancel":"Avbryt","Delete":"Radera","Previous":"Föregående","Next":"Nästa","Subscribe To Thread":"Följ tråd","Subscribe":"Följ","Subscribed":"Följer","Unsubscribe":"Avfölj","This thread was created :time by :link":"Denna tråden skapades för :time av :link","Your thread has been published!":"Din tråd har publicerats!","Your thread has been deleted!":"Din tråd har raderats!","Your reply has been published!":"Ditt svar har publicerats!","Your reply has been deleted!":"Ditt svar har raderats!","Your reply is updated!":"Ditt svar är uppdaterat!","The thread has :count replies":"Tråden har :count svar","Have something to say?":"Har du något att säga?","Please <a href=:link>sign in</a> to participate in this discussion":"<a href=:link>Logga in</a> för att delta i diskussionen.","answer":"svar","answers":"svar","There are no threads here.":"Det finns inga trådar här.","Threads by :name":"Trådar av :name","Popular threads":"Populära trådar","Unanswered threads":"Obesvarade trådar","My Profile":"Min profil","Signed Up :time":"Skapade konto för :time","There is no activity for this user yet.":"Det finns ingen aktivitet från denna användaren än.","Login":"Logga in","Register":"Skapa konto","Logout":"Logga ut","E-Mail Address":"E-post adress","Password":"Lösenord","Confirm Password":"Upprepa lösenord","Remember Me":"Kom ihåg mig","Forgot Your Password?":"Glömt ditt lösenord?","Reset Password":"Återställ lösenord","Send Password Reset Link":"Skicka länk för återställning","Name":"Namn","auth":{"failed":"Uppgifterna matchar inte något konto.","throttle":"För många inloggningsförsök. Var god försök igen om :seconds sekunder."},"pagination":{"previous":"&laquo; Föregående","next":"Nästa &raquo;"},"passwords":{"password":"Lösenord måste vara minst 6 tecken och matcha upprepningen.","reset":"Ditt lösenord har återställts!","sent":"Vi har mailat din länk för återställning av lösenord!","token":"Denna återställningsnyckel är ogiltig.","user":"Vi kan inte hitta något konto med den e-postadressen."},"validation":{"accepted":":attribute måste accepteras.","active_url":":attribute är inte en giltig URL.","after":":attribute måste vara ett datum efter :date.","after_or_equal":":attribute måste vara ett datum efter eller lika med :date.","alpha":":attribute får bara innehålla bokstäver.","alpha_dash":":attribute får bara innehålla bokstäver, siffror, och bindestreck.","alpha_num":":attribute får bara innehålla bokstäver och siffror.","array":":attribute måste vara en array.","before":":attribute måste vara ett datum före :date.","before_or_equal":":attribute måste vara ett datum före eller lika med :date.","between":{"numeric":":attribute måste vara mellan :min och :max.","file":":attribute måste vara mellan :min och :max kilobytes.","string":":attribute måste vara mellan :min och :max tecken.","array":":attribute måste vara mellan :min och :max st."},"boolean":":attribute måste vara sant eller falskt.","confirmed":":attribute upprepningen matchar inte.","date":":attribute är inte ett giltigt datum.","date_format":":attribute matchar inte formatet :format.","different":":attribute och :other måste vara olika.","digits":":attribute måste vara :digits siffror.","digits_between":":attribute måste vara mellan :min och :max siffror.","dimensions":":attribute har ogiltiga dimensioner.","distinct":":attribute har ett dublicerat värde.","email":":attribute måste vara en giltig e-postadress.","exists":"Vald :attribute är ogiltig.","file":":attribute måste vara en fil.","filled":":attribute måste ha ett värde.","image":":attribute måste vara en bild.","in":"Vald :attribute är ogiltig.","in_array":":attribute existerar inte i :other.","integer":":attribute måste vara ett nummer.","ip":":attribute måste vara en giltig IP adress.","ipv4":":attribute måste vara en giltig IPv4 adress.","ipv6":":attribute måste vara en giltig IPv6 adress.","json":":attribute måste vara en giltig JSON sträng.","max":{"numeric":":attribute får inte vara större än :max.","file":":attribute får inte vara större än :max kilobytes.","string":":attribute får inte vara större än :max tecken.","array":":attribute får inte ha fler än :max st."},"mimes":":attributemåste vara en fil av typ: :values.","mimetypes":":attributemåste vara en fil av typ: :values.","min":{"numeric":":attribute måste vara minst :min.","file":":attribute måste vara minst :min kilobytes.","string":":attribute måste vara minst :min characters.","array":":attribute måste ha minst :min st."},"not_in":"Vald :attribute är ogiltig.","numeric":":attribute måste vara ett nummer.","present":":attribute måste finnas.","regex":":attribute format är ogiltigt.","required":":attribute är obligatoriskt.","required_if":":attribute är ogiltigatoriskt när :other är :value.","required_unless":":attribute är ogiltigatoriskt om inte :other är i :values.","required_with":":attribute är ogiltigatoriskt när :values existerar.","required_with_all":":attribute är ogiltigatoriskt när :values existerar.","required_without":":attribute är ogiltigatoriskt när :values inte existerar.","required_without_all":":attribute är ogiltigatoriskt när ingen av :values existerar.","same":":attribute och :other måste matcha.","size":{"numeric":":attribute måste vara :size.","file":":attribute måste vara :size kilobytes.","string":":attribute måste vara :size tecken.","array":":attribute måste innehålla :size st."},"string":":attribute måste vara en sträng.","timezone":":attribute måste vara en giltig tidszon.","unique":":attribute har redan tagits.","uploaded":":attribute misslyckades att ladda upp.","url":":attribute format är ogiltigt."}}
 
 /***/ }),
 /* 155 */
@@ -58188,7 +58188,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }
   })]), _vm._v(" "), _c('button', {
-    staticClass: "btn btn-default",
+    staticClass: "btn btn-primary",
     attrs: {
       "type": "submit"
     },
@@ -59734,7 +59734,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     computed: {
         classes: function classes() {
-            return ['btn', this.isActive ? 'btn-success' : 'btn-primary'];
+            return ['btn', this.isActive ? 'btn-primary' : 'btn-default'];
         },
         buttonText: function buttonText() {
             return this.isActive ? lang['Subscribed'] : lang['Subscribe'];
@@ -59787,82 +59787,7 @@ var Component = __webpack_require__(2)(
   /* script */
   __webpack_require__(186),
   /* template */
-  null,
-  /* styles */
-  null,
-  /* scopeId */
-  null,
-  /* moduleIdentifier (server only) */
-  null
-)
-Component.options.__file = "/Users/jimmiejohansson/Code/forum/resources/assets/js/pages/Thread.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-185bdd35", Component.options)
-  } else {
-    hotAPI.reload("data-v-185bdd35", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 186 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Replies_vue__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Replies_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_Replies_vue__);
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['initialRepliesCount'],
-
-    components: { Replies: __WEBPACK_IMPORTED_MODULE_0__components_Replies_vue___default.a },
-
-    data: function data() {
-        return {
-            repliesCount: this.initialRepliesCount
-        };
-    }
-});
-
-/***/ }),
-/* 187 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 188 */,
-/* 189 */,
-/* 190 */,
-/* 191 */,
-/* 192 */,
-/* 193 */,
-/* 194 */,
-/* 195 */,
-/* 196 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var Component = __webpack_require__(2)(
-  /* script */
-  __webpack_require__(198),
-  /* template */
-  __webpack_require__(197),
+  __webpack_require__(187),
   /* styles */
   null,
   /* scopeId */
@@ -59894,7 +59819,50 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 197 */
+/* 186 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            notifications: false
+        };
+    },
+    created: function created() {
+        var _this = this;
+
+        axios.get('/notifications/').then(function (response) {
+            _this.notifications = response.data;
+        });
+    },
+
+
+    methods: {
+        markAsRead: function markAsRead(notification) {
+            axios.delete('/notifications/' + notification.id);
+        }
+    }
+});
+
+/***/ }),
+/* 187 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -59937,47 +59905,71 @@ if (false) {
 }
 
 /***/ }),
-/* 198 */
+/* 188 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(2)(
+  /* script */
+  __webpack_require__(189),
+  /* template */
+  null,
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/Users/jimmiejohansson/Code/forum/resources/assets/js/pages/Thread.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-185bdd35", Component.options)
+  } else {
+    hotAPI.reload("data-v-185bdd35", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 189 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Replies_vue__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Replies_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_Replies_vue__);
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['initialRepliesCount'],
+
+    components: { Replies: __WEBPACK_IMPORTED_MODULE_0__components_Replies_vue___default.a },
+
     data: function data() {
         return {
-            notifications: false
+            repliesCount: this.initialRepliesCount
         };
-    },
-    created: function created() {
-        var _this = this;
-
-        axios.get('/notifications/').then(function (response) {
-            _this.notifications = response.data;
-        });
-    },
-
-
-    methods: {
-        markAsRead: function markAsRead(notification) {
-            axios.delete('/notifications/' + notification.id);
-        }
     }
 });
+
+/***/ }),
+/* 190 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

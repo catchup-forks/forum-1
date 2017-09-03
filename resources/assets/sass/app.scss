@@ -1,9 +1,27 @@
-
 // Fonts
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
-
 // Variables
 @import "variables";
-
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+.navbar-default .navbar-brand {
+  background: url('/images/MateRun_logo.png') no-repeat center center;
+  background-size: contain;
+  text-indent: -9999px;
+}
+
+.navbar-default .navbar-brand,
+.navbar-default .navbar-nav > li > a {
+  color: #fff;
+}
+
+.navbar-default .navbar-nav > li {
+  a &:hover, a &:focus {
+    color: #ccc;
+  }
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
