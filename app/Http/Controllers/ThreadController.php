@@ -35,7 +35,7 @@ class ThreadController extends Controller
             } elseif (request()->has('popular')) {
                 $title = __('Popular All Time');
             } elseif (request()->has('unanswered')) {
-                $title = __('Unanswered threads');
+                $title = __('Unanswered Threads');
             } else {
                 $title = __('All Threads');
             }
