@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Thread;
 use App\Channel;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Filters\ThreadFilters;
 
@@ -25,13 +26,27 @@ class ThreadController extends Controller
     {
         $threads = Thread::latest()->filter($filter);
 
-        if ($channel->exists) $threads->where('channel_id', $channel->id);
+        if ($channel->exists) {
+            $title = $channel->name;
+            $threads->where('channel_id', $channel->id);
+        } else {
+            if (request()->has('by')) {
+                $title = __('Threads by :name', ['name' => request()->input('by')]);
+            } elseif (request()->has('popular')) {
+                $title = __('Popular All Time');
+            } elseif (request()->has('unanswered')) {
+                $title = __('Unanswered Threads');
+            } else {
+                $title = __('All Threads');
+            }
+
+        }
 
         $threads = $threads->paginate();
 
         if (request()->wantsJson()) return $threads;
 
-        return view('threads.index', compact('threads'));
+        return view('threads.index', ['threads' => $threads, 'title' => $title]);
     }
 
     /**
@@ -65,6 +80,8 @@ class ThreadController extends Controller
             'body' => \request('body'),
         ]);
 
+        $thread->subscribe();
+
         return redirect($thread->path())->with('flash', __('Your thread has been published!'));
     }
 
@@ -77,7 +94,9 @@ class ThreadController extends Controller
      */
     public function show($channelId, Thread $thread)
     {
-        return view('threads.show', compact('thread'));
+        if (auth()->check()) auth()->user()->read($thread);
+
+        return view('threads.show', ['thread' => $thread, 'title' => $thread->title]);
     }
 
     /**

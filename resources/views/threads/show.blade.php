@@ -55,7 +55,7 @@
                             <hr>
                             <h4>{{ __('Subscribe To Thread') }}</h4>
                             <p>
-                                <subscribe-button :active="{{ json_encode($thread->isSubscribedTo) }}"></subscribe-button>
+                                <subscribe-button :active="{{ json_encode($thread->isSubscribedTo) }}" :authorized="{{ json_encode(auth()->check()) }}"></subscribe-button>
                             </p>
                         </div>
                     </div>

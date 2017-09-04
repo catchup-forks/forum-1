@@ -42,7 +42,13 @@ class Thread extends Model
 
     public function addReply($reply)
     {
-        return $this->replies()->create($reply);
+        $reply = $this->replies()->create($reply);
+
+        $this->subscriptions->filter(function ($subscriber) use ($reply) {
+            return $subscriber->user_id != $reply->user_id;
+        })->each->notify($reply);
+
+        return $reply;
     }
 
     public function channel()
@@ -57,9 +63,11 @@ class Thread extends Model
 
     public function subscribe($userId = null)
     {
-        return $this->subscriptions()->create([
+        $this->subscriptions()->create([
             'user_id' => $userId ?: auth()->id(),
         ]);
+
+        return $this;
     }
 
     public function unsubscribe($userId = null)
@@ -77,5 +85,12 @@ class Thread extends Model
     public function getIsSubscribedToAttribute()
     {
         return $this->subscriptions()->where('user_id', auth()->id())->exists();
+    }
+
+    public function hasUpdatesFor()
+    {
+        $key = auth()->user()->visitedThreadCacheKey($this);
+
+        return $this->updated_at > cache($key);
     }
 }

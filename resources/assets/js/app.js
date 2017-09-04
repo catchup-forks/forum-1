@@ -36,7 +36,7 @@ Vue.component('replies', require('./components/Replies.vue'));
 Vue.component('reply', require('./components/Reply.vue'));
 Vue.component('paginator', require('./components/Paginator.vue'));
 Vue.component('subscribe-button', require('./components/SubscribeButton.vue'));
-
+Vue.component('user-notifications', require('./components/UserNotifications.vue'));
 
 Vue.component('thread-view', require('./pages/Thread.vue'));
 

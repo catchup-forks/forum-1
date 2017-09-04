@@ -10,7 +10,15 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <div class="level">
-                                <h4 class="flex"><a href="{{ $thread->path() }}">{{ $thread->title }}</a></h4>
+                                <h4 class="flex">
+                                    <a href="{{ $thread->path() }}">
+                                        @if (auth()->check() && $thread->hasUpdatesFor(auth()->id()))
+                                            <strong>{{ $thread->title }}</strong>
+                                        @else
+                                            {{ $thread->title }}
+                                        @endif
+                                    </a>
+                                </h4>
                                 <strong>{{ $thread->replies_count }} {{ __(str_plural('answer', $thread->replies_count)) }}</strong>
                             </div>
                         </div>
