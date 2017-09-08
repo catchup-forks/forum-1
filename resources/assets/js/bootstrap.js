@@ -37,6 +37,17 @@ if (token) {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
+
+import Form from './form/form';
+window.Form = Form;
+
+window.formatTempo = function (workout) {
+    workout.minutes = Math.round(workout.tempo / 60);
+    workout.seconds = workout.tempo - (Math.round(workout.tempo / 60) * 60);
+
+    if (workout.seconds < 10) workout.seconds = '0' + workout.seconds;
+};
+
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting

@@ -33,6 +33,11 @@ class User extends Authenticatable
         return 'name';
     }
 
+    public function workouts()
+    {
+        return $this->belongsToMany(Workout::class, 'workout_user');
+    }
+
     public function threads()
     {
         return $this->hasMany(Thread::class)->latest();
@@ -55,4 +60,5 @@ class User extends Authenticatable
     {
         return sprintf('user.%s.visited.thread.%s', $this->id, $thread->id);
     }
+
 }

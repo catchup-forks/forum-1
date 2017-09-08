@@ -40,7 +40,7 @@
                     @endif
 
                     @if (!auth()->check())
-                        <p class="text-center">{!! __('Please <a href=:link>sign in</a> to participate in this discussion', ['link' => '"'.route('login').'"']) !!}.</p>
+                        <p class="text-center">{!! __('Please <a href=:register>create account</a> or <a href=:login>sign in</a> to participate in this discussion', ['register' => '"'.route('register').'"','login' => '"'.route('login').'"']) !!}.</p>
                     @endif
                 </div>
                 <div class="col-md-4">

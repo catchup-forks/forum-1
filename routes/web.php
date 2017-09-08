@@ -14,7 +14,9 @@
 Route::get('/', function () {
     if (auth()->check()) return redirect('home');
 
-    return view('welcome');
+    $threads = \App\Thread::latest()->get();
+
+    return view('welcome', ['threads' => $threads]);
 });
 //Route::resource('/threads', 'ThreadController');
 Route::post('/threads', 'ThreadController@store');
@@ -38,6 +40,9 @@ Route::delete('/notifications/{notification}', 'UsersNotificationsController@des
 Route::get('/notifications', 'UsersNotificationsController@index');
 
 Route::get('/profile/{user}', 'ProfileController@show')->name('profile');
+
+Route::resource('/workout', 'WorkoutController');
+Route::post('/my-position', 'ProfileController@myPosition');
 
 Auth::routes();
 

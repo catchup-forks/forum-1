@@ -22,6 +22,14 @@
             <ul class="nav navbar-nav">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">{{ __('Workouts') }} <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ route('workout.index') }}">{{ __('Workouts') }}</a></li>
+                        <li><a href="{{ route('workout.create') }}">{{ __('Create New Workout') }}</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false">{{ __('Forum') }} <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="/threads">{{ __('All Threads') }}</a></li>

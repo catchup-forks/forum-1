@@ -2,7 +2,7 @@
 
     @slot('heading')
         <div class="flex">
-            {{ $activity->user->name }} <a href="{{ $activity->subject->favorited->path() }}">{{ __('favorited a reply in') }} {{ $activity->subject->favorited->thread->title }}</a>:
+            <a href="{{ route('profile', ['user' => $activity->user]) }}">{{ $activity->user->name }}</a> {{ __('favorited a reply in') }} <a href="{{ $activity->subject->favorited->path() }}">{{ $activity->subject->favorited->thread->title }}</a>:
         </div>
         <span>
             {{ $activity->subject->created_at->diffForHumans() }}

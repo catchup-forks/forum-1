@@ -35,13 +35,14 @@
   "Your reply is updated!": "Ditt svar är uppdaterat!",
   "The thread has :count replies": "Tråden har :count svar",
   "Have something to say?": "Har du något att säga?",
-  "Please <a href=:link>sign in</a> to participate in this discussion": "<a href=:link>Logga in</a> för att delta i diskussionen.",
+  "Please <a href=:register>create account</a> or <a href=:login>sign in</a> to participate in this discussion": "<a href=:register>Skapa konto</a> eller <a href=:login>logga in</a> för att delta i diskussionen.",
   "answer": "svar",
   "answers": "svar",
   "There are no threads here.": "Det finns inga trådar här.",
   "Threads by :name": "Trådar av :name",
   "Popular threads": "Populära trådar",
   "Unanswered Threads": "Obesvarade trådar",
+  "Last updated threads": "Senast uppdaterade trådar",
 
   "My Profile": "Min profil",
   "Signed Up :time": "Skapade konto för :time",
@@ -59,6 +60,47 @@
   "Send Password Reset Link": "Skicka länk för återställning",
 
   "Name": "Namn",
+
+  "loading": "Laddar...",
+  "find_my_location": "Hitta min position",
+  "found_your_location": "Vi hittade din position!",
+  "minute_short": "min",
+  "second_short": "sek",
+  "time_prefix": "kl.",
+  "favorited a reply in": "favoritmarkerade ett svar i",
+  "replied to": "svarade på",
+
+  "You need to <a href=:login>login</a> or <a href=:register>create an account</a> to create or participate in a workout without being logged in.": "Du behöver <a href=:login>logga in</a> eller <a href=:register>skapa ett konto</a> för att skapa eller delta i ett pass.",
+
+  "Workouts": "Träningspass",
+  "Create New Workout": "Skapa nytt träningspass",
+  "Workouts nearby": "Träningspass i närheten",
+
+  "workout.create_explanation": "Här skapar du ett träningspass som andra kan ansluta till. Tempo är ungefär hur lång tid det kommer ta att avverka en kilometer på. Distans är hur lång hela din runda blir. Samt måste vi veta din position för att veta vart vi ska sätta upp ditt pass.",
+
+  "workout.create_workout": "Skapa träningspass",
+  "workout.workouts_nearby": "Träningspass i närheten",
+  "workout.expected_tempo": "Ditt tänkta tempo",
+  "workout.expected_distance": "Din tänkta distans",
+  "workout.when": "När startar passet?",
+  "workout.find_people_to_run_with": "Hitta personer att springa med",
+
+  "workout.start": "Börjar",
+  "workout.attendees": "Deltagare",
+  "workout.tempo": "Tempo",
+  "workout.distance": "Distans",
+  "workout.how_far_away": "Hur långt bort?",
+  "workout.join": "Delta",
+  "workout.leave": "Lämna",
+  "workout.description": "Beskrivning av passet",
+  "workout.your_workout": "Ditt pass",
+  "workout.proposed_meeting_place": "Föreslagen mötesplats",
+  "workout.meeting_place_bus_station": "Busshållplats",
+  "workout.how_far_can_you_travel": "Hur långt bort får passet vara?",
+
+  "workout.someone_joined_your_workout": "Någon gick med i ditt pass!",
+
+
 
   "auth": {
     "failed": "Uppgifterna matchar inte något konto.",

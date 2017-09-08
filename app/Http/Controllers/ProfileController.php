@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Activity;
+use Illuminate\Support\Facades\Request;
 
 class ProfileController extends Controller
 {
@@ -18,5 +19,15 @@ class ProfileController extends Controller
             'activitiesByDate' => Activity::feed($user, 50),
             'title' => $user->name,
         ]);
+    }
+
+    public function myPosition()
+    {
+        $user = User::find(auth()->id());
+        $user->latitude = \request('latitude');
+        $user->longitude = \request('longitude');
+        $user->save();
+
+        return $user;
     }
 }

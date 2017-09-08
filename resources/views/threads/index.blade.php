@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-8">
                 {{ $threads->links() }}
 
                 @forelse($threads as $thread)
@@ -32,6 +32,14 @@
                 @endforelse
 
                 {{ $threads->links() }}
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <strong>{{ __('Channels') }}</strong>
+                    </div>
+                    @include('channels.partials.list')
+                </div>
             </div>
         </div>
     </div>
