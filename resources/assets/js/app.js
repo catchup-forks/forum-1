@@ -35,6 +35,7 @@ Vue.component('flash', require('./components/Flash.vue'));
 Vue.component('replies', require('./components/Replies.vue'));
 Vue.component('reply', require('./components/Reply.vue'));
 Vue.component('paginator', require('./components/Paginator.vue'));
+Vue.component('get-my-position', require('./components/GetMyPosition.vue'));
 Vue.component('create-workout', require('./components/CreateWorkout.vue'));
 Vue.component('subscribe-button', require('./components/SubscribeButton.vue'));
 Vue.component('user-notifications', require('./components/UserNotifications.vue'));

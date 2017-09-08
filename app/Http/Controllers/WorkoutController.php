@@ -16,6 +16,10 @@ class WorkoutController extends Controller
 
     public function index()
     {
+        if (auth()->user()->latitude == null) {
+            return redirect('/my-position');
+        }
+
         $threads = Thread::latest()->get();
 
         $nearbys = DB::select('SELECT * FROM(SELECT id, `starting` as stdate, distance, tempo, latitude, longitude,

@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Request;
 
 class ProfileController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->only(['getMyPosition', 'myPosition']);
+    }
+
     /**
      * @param User $user
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -19,6 +24,11 @@ class ProfileController extends Controller
             'activitiesByDate' => Activity::feed($user, 50),
             'title' => $user->name,
         ]);
+    }
+
+    public function getMyPosition()
+    {
+        return view('profiles.get_position');
     }
 
     public function myPosition()

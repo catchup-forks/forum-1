@@ -42,6 +42,7 @@ Route::get('/notifications', 'UsersNotificationsController@index');
 Route::get('/profile/{user}', 'ProfileController@show')->name('profile');
 
 Route::resource('/workout', 'WorkoutController');
+Route::get('/my-position', 'ProfileController@getMyPosition');
 Route::post('/my-position', 'ProfileController@myPosition');
 
 Auth::routes();
