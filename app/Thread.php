@@ -4,6 +4,7 @@ namespace App;
 
 use App\Traits\RecordsActivity;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Redis;
 
 class Thread extends Model
 {
@@ -27,7 +28,7 @@ class Thread extends Model
 
     public function path()
     {
-        return '/threads/' . $this->channel->name . '/' . $this->id;
+        return '/threads/' . $this->channel->name . '/' . $this->slug;
     }
 
     public function replies()
@@ -92,5 +93,48 @@ class Thread extends Model
         $key = auth()->user()->visitedThreadCacheKey($this);
 
         return $this->updated_at > cache($key);
+    }
+
+    public function recordVisit()
+    {
+        Redis::incr($this->visitedCacheKey());
+
+        return $this;
+    }
+
+    public function getVisitsAttribute()
+    {
+        return Redis::get($this->visitedCacheKey()) ?: 0;
+    }
+
+    public function visitedCacheKey()
+    {
+        return 'thread.' . $this->id . '.visits';
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    public function setSlugAttribute($value)
+    {
+        if (static::whereSlug($slug = str_slug($value))->exists()) {
+            $slug = $this->incrementSlug($slug);
+        }
+
+        $this->attributes['slug'] = $slug;
+    }
+
+    public function incrementSlug($slug)
+    {
+        $original = $slug;
+        $count = 2;
+
+        while (static::whereSlug($slug)->exists()) {
+            $slug = $original . '-' . $count++;
+        }
+
+        return $slug;
     }
 }

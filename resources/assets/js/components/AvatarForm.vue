@@ -3,14 +3,20 @@
         <img class="img-rounded" :src="avatar" width="200">
 
         <form v-if="canUpdate" method="post" enctype="multipart/form-data">
-            <input style="width: 200px" type="file" name="avatar" accept="image/*" @change="onChange">
+            <image-upload style="width: 200px" name="avatar" @loaded="onLoaded"></image-upload>
         </form>
     </div>
 </template>
 
 <script>
+    import ImageUpload from './ImageUpload.vue';
+
     export default {
         props: ['user'],
+
+        components: {
+            ImageUpload
+        },
 
         computed: {
             canUpdate() {
@@ -25,19 +31,10 @@
         },
 
         methods: {
-            onChange(e) {
-                if (!e.target.files.length) return;
-                let avatar = e.target.files[0];
 
-                let reader = new FileReader();
-
-                reader.readAsDataURL(avatar);
-
-                reader.onload = e => {
-                    this.avatar = e.target.result;
-                };
-
-                this.persist(avatar);
+            onLoaded(avatar) {
+                this.avatar = avatar.src;
+                this.persist(avatar.file);
             },
 
             persist(avatar) {
