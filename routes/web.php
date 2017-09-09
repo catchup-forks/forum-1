@@ -48,3 +48,5 @@ Route::post('/my-position', 'ProfileController@myPosition');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::post('/api/upload/avatar', 'UserAvatarController@store')->name('upload_avatar');

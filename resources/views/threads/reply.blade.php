@@ -3,6 +3,7 @@
         <div id="reply-{{ $reply->id }}" class="panel-heading">
             <div class="level">
                 <h5 class="flex">
+                    <img class="mr-1 img-rounded" src="{{ $reply->owner->avatar_path }}" width="40" alt="{{ $reply->owner->name }}">
                     <a href="{{ route('profile', $reply->owner) }}">{{ $reply->owner->name }}</a> {{ __('said') }}:
                     {{ $reply->created_at->diffForHumans() }}
                 </h5>

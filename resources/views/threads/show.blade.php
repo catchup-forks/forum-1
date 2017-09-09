@@ -9,6 +9,7 @@
                         <div class="panel-heading">
                             <div class="level">
                                 <div class="flex">
+                                    <img class="mr-1 img-rounded" src="{{ $thread->creator->avatar_path }}" width="40" alt="{{ $thread->creator->name }}">
                                     <a href="{{ route('profile', $thread->creator) }}">{{ $thread->creator->name }}</a> {{ __('posted') }}
                                     : {{ $thread->title }}
                                 </div>

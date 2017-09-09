@@ -70,8 +70,12 @@
   "favorited a reply in": "favoritmarkerade ett svar i",
   "replied to": "svarade på",
 
+  "Get your position": "Hitta din position",
+  "To perform this, you need to get your current locations coordinates.": "För att genomföra detta, behöver du hitta din nuvarande positions koordinater.",
+
   "You need to <a href=:login>login</a> or <a href=:register>create an account</a> to create or participate in a workout without being logged in.": "Du behöver <a href=:login>logga in</a> eller <a href=:register>skapa ett konto</a> för att skapa eller delta i ett pass.",
 
+  "Your avatar has been updated!": "Din profilbild har uppdaterats!",
   "Workouts": "Träningspass",
   "Create New Workout": "Skapa nytt träningspass",
   "Workouts nearby": "Träningspass i närheten",

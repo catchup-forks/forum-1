@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'avatar_path'
     ];
 
     /**
@@ -54,6 +54,11 @@ class User extends Authenticatable
             $this->visitedThreadCacheKey($thread),
             Carbon::now()
         );
+    }
+
+    public function getAvatarPathAttribute($value)
+    {
+        return asset($value ?: 'images/avatars/default.jpg');
     }
 
     public function visitedThreadCacheKey($thread)
