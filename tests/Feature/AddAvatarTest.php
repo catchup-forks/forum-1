@@ -15,7 +15,7 @@ class AddAvatarTest extends TestCase
     {
         $this->expectException('Illuminate\Auth\AuthenticationException');
 
-        $this->json('POST', '/api/users/1/avatar')->assertStatus(401);
+        $this->json('POST', '/api/upload/avatar')->assertStatus(401);
     }
 
     public function testAValidAvatarMustBeProvided()
@@ -24,7 +24,7 @@ class AddAvatarTest extends TestCase
 
         $this->expectException('Illuminate\Validation\ValidationException');
 
-        $this->json('POST', '/api/users/' . auth()->id() . '/avatar', [
+        $this->json('POST', '/api/upload/avatar', [
             'avatar' => 'not-an-image'
         ])->assertStatus(422);
     }
@@ -35,11 +35,11 @@ class AddAvatarTest extends TestCase
 
         Storage::fake('public');
 
-        $this->json('POST', '/api/users/' . auth()->id() . '/avatar', [
+        $this->json('POST', '/api/upload/avatar', [
             'avatar' => $file = UploadedFile::fake()->image('avatar.jpg')
         ]);
 
-        $this->assertEquals('avatars/' . $file->hashName(), auth()->user()->avatar_path);
+        $this->assertEquals(asset('avatars/' . $file->hashName()), asset(auth()->user()->avatar_path));
 
         Storage::disk('public')->assertExists('avatars/' . $file->hashName());
     }
