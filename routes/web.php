@@ -46,7 +46,11 @@ Route::get('/my-position', 'ProfileController@getMyPosition');
 Route::post('/my-position', 'ProfileController@myPosition');
 
 Auth::routes();
+Route::get('/oauth/{driver}', 'Auth\LoginController@redirectToProvider')->name('oauth_login');
+Route::get('/oauth/{driver}/callback', 'Auth\LoginController@handleProviderCallback');
+Route::get('/oauth/{driver}/deauthorize', 'Auth\LoginController@handleProviderDeauthorize');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
 
 Route::post('/api/upload/avatar', 'UserAvatarController@store')->name('upload_avatar');

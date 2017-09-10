@@ -58,6 +58,9 @@ class User extends Authenticatable
 
     public function getAvatarPathAttribute($value)
     {
+        if (strpos($value, 'http')) {
+            return $value;
+        }
         return asset($value ?: 'images/avatars/default.jpg');
     }
 

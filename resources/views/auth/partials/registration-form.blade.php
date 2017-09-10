@@ -3,6 +3,10 @@
         <strong>{{ __('Register') }}</strong>
     </div>
     <div class="panel-body">
+        <a href="{{ route('oauth_login', ['driver' => 'facebook']) }}" class="btn btn-primary btn-lg">
+            Facebook login
+        </a>
+
         <form class="form-horizontal" method="POST" action="{{ route('register') }}">
             {{ csrf_field() }}
 
