@@ -32,12 +32,12 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false">{{ __('Forum') }} <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="/threads">{{ __('All Threads') }}</a></li>
+                        <li><a href="/diskussion">{{ __('All Threads') }}</a></li>
                         @if (auth()->check())
-                            <li><a href="/threads?by={{ auth()->user()->name }}">{{ __('My Threads') }}</a></li>
+                            <li><a href="/diskussion?by={{ auth()->user()->name }}">{{ __('My Threads') }}</a></li>
                         @endif
-                        <li><a href="/threads?popular=1">{{ __('Popular All Time') }}</a></li>
-                        <li><a href="/threads?unanswered=1">{{ __('Unanswered Threads') }}</a></li>
+                        <li><a href="/diskussion?popular=1">{{ __('Popular All Time') }}</a></li>
+                        <li><a href="/diskussion?unanswered=1">{{ __('Unanswered Threads') }}</a></li>
                     </ul>
                 </li>
                 <li><a href="/threads/create">{{ __('New Thread') }}</a></li>
@@ -46,7 +46,7 @@
                        aria-expanded="false">{{ __('Channels') }} <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         @foreach($channels as $channel)
-                            <li><a href="/threads/{{ $channel->slug }}">{{ $channel->name }}</a></li>
+                            <li><a href="/{{ $channel->slug }}">{{ $channel->name }}</a></li>
                         @endforeach
                     </ul>
                 </li>
