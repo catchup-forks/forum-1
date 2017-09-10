@@ -29,7 +29,7 @@ class Thread extends Model
 
     public function path()
     {
-        return $this->channel->slug . '/' . $this->slug;
+        return '/' . $this->channel->slug . '/' . $this->slug;
     }
 
     public function replies()

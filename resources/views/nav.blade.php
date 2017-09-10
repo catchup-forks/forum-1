@@ -46,7 +46,7 @@
                        aria-expanded="false">{{ __('Channels') }} <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         @foreach($channels as $channel)
-                            <li><a href="/{{ $channel->slug }}">{{ $channel->name }}</a></li>
+                            <li><a href="/kanal/{{ $channel->slug }}">{{ $channel->name }}</a></li>
                         @endforeach
                     </ul>
                 </li>

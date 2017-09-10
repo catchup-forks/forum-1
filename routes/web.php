@@ -58,6 +58,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('/api/upload/avatar', 'UserAvatarController@store')->name('upload_avatar');
 
+Route::get('/kanal/{channel}', 'ThreadController@index');
 Route::get('/{channel}/{thread}', 'ThreadController@show')->name('thread');
-Route::get('/{channel}', 'ThreadController@index');
 Route::get('/{page}', 'PageController@show');
