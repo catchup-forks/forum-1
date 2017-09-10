@@ -4,19 +4,10 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Utloggad</div>
 
-                    <div class="panel-body">
-                        {!! __(
-                        'You need to <a href=:login>login</a> or <a href=:register>create an account</a> to create or participate in a workout without being logged in.',
-                        ['login' => route('login'), 'register' => route('register')]
-                        )  !!}
-                    </div>
-                </div>
+                @include('auth.partials.registration-form')
 
-
-                <img class="img-responsive" src="/images/MateRun_logo.png" alt="MateRun Logo">
+                <img class="img-responsive mb-1" src="/images/MateRun_logo.png" alt="MateRun Logo">
             </div>
             <div class="col-md-4">
                 <div class="panel panel-default">

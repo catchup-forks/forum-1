@@ -35,8 +35,17 @@
             display: flex;
             align-items: center;
         }
+        .mt-1 {
+            margin-top: 1em;
+        }
         .mr-1 {
             margin-right: 1em;
+        }
+        .mb-1 {
+            margin-bottom: 1em;
+        }
+        .ml-1 {
+            margin-left: 1em;
         }
         [v-cloak] { display: none }
     </style>

@@ -14,7 +14,7 @@
 Route::get('/', function () {
     if (auth()->check()) return redirect('home');
 
-    $threads = \App\Thread::latest()->get();
+    $threads = \App\Thread::latest()->take(15)->get();
 
     return view('welcome', ['threads' => $threads]);
 });
