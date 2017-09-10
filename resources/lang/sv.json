@@ -36,6 +36,7 @@
   "The thread has :count replies": "Tråden har :count svar",
   "Have something to say?": "Har du något att säga?",
   "Please <a href=:register>create account</a> or <a href=:login>sign in</a> to participate in this discussion": "<a href=:register>Skapa konto</a> eller <a href=:login>logga in</a> för att delta i diskussionen.",
+  "visits": "visningar",
   "answer": "svar",
   "answers": "svar",
   "There are no threads here.": "Det finns inga trådar här.",
