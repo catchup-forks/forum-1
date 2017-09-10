@@ -36,7 +36,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token', 'email', 'latitude', 'longitude', 'facebook_token'
+        'password', 'remember_token', 'email', 'facebook_token'
     ];
 
     public function workouts()

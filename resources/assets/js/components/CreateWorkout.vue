@@ -95,13 +95,17 @@
             <textarea class="form-control" rows="3" v-model="form.description"></textarea>
         </div>
         <div class="form-group" v-if="form.latitude == null || form.longitude == null">
-            <span v-if="latitude != null">{{ lang["found_your_location"] }}</span>
             <span v-if="findingLocation">{{ lang["loading"] }}</span>
-            <button v-if="!form.latitude || !form.longitude" :disabled="findingLocation" type="button" @click="getMyLocation" class="btn btn-default">
+            <span v-if="latitude != null && longitude != null && !findingLocation">{{ lang["found_your_location"] }}</span>
+
+            <button v-if="latitude != null && longitude != null" :disabled="findingLocation" type="button" @click="getMyLocation" class="btn btn-default">
+                {{ lang["Update my location"] }}
+            </button>
+            <button v-else :disabled="findingLocation" type="button" @click="getMyLocation" class="btn btn-default">
                 {{ lang["find_my_location"] }}
             </button>
         </div>
-        <button v-if="form.latitude != null && form.longitude != null"
+        <button v-if="latitude != null && longitude != null"
                 class="btn btn-primary btn-lg">{{ lang["Save workout"] }}
         </button>
 
@@ -127,8 +131,8 @@
                 distance: 5,
                 date: null,
                 workoutHour: null,
-                latitude: null,
-                longitude: null,
+                latitude: (window.forum.user.latitude) ? window.forum.user.latitude : null,
+                longitude: (window.forum.user.longitude) ? window.forum.user.longitude : null,
                 form: new Form({
                     tempo: 300,
                     distance: 5,
