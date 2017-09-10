@@ -6,7 +6,7 @@
             <div class="col-md-8 col-md-offset-2">
                 <h1>{{ $page->title }}</h1>
 
-                {{ $page->body }}
+                {!! $page->body !!}
             </div>
         </div>
     </div>
