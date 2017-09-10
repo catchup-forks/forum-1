@@ -47,6 +47,26 @@
         .ml-1 {
             margin-left: 1em;
         }
+        .mob-100 {
+            display: inline-block;
+        }
+        @media(max-width: 767px) {
+            .mob-100 {
+                width: 100%;
+            }
+            .xs-mt-1 {
+                margin-top: 1em;
+            }
+            .xs-mr-1 {
+                margin-right: 1em;
+            }
+            .xs-mb-1 {
+                margin-bottom: 1em;
+            }
+            .xs-ml-1 {
+                margin-left: 1em;
+            }
+        }
         .btn-facebook {
             background-color: #3B5998;
             color: #fff;

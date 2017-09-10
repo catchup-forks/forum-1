@@ -36,9 +36,9 @@
                         axios.post('/my-position', {
                             latitude: position.coords.latitude,
                             longitude: position.coords.longitude
-                        }).then(data => {
-                            flash('Your position is found!');
                         });
+
+                        window.location.href = '/workout/create';
                     });
                 }
             }
