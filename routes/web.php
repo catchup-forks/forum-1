@@ -25,7 +25,6 @@ Route::post('/threads', 'ThreadController@store');
 Route::get('/threads', 'ThreadController@index');
 Route::get('/threads/create', 'ThreadController@create');
 Route::get('/threads/{channel}', 'ThreadController@index');
-Route::get('/threads/{channel}/{thread}', 'ThreadController@show')->name('thread');
 Route::delete('/threads/{channel}/{thread}', 'ThreadController@destroy');
 Route::post('/threads/{channel}/{thread}/subscriptions', 'ThreadSubscriptionController@store')->middleware('auth');
 Route::delete('/threads/{channel}/{thread}/subscriptions', 'ThreadSubscriptionController@destroy')->middleware('auth');
@@ -60,4 +59,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('/api/upload/avatar', 'UserAvatarController@store')->name('upload_avatar');
 
+Route::get('/{channel}/{thread}', 'ThreadController@show')->name('thread');
 Route::get('/{page}', 'PageController@show');
