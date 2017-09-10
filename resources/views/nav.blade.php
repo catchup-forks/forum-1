@@ -54,36 +54,47 @@
 
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
-                <!-- Authentication Links -->
-                @if (Auth::guest())
-                    <li><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
-                    <li><a href="{{ route('register') }}">{{ __('Register') }}</a></li>
-                @else
-                    <user-notifications></user-notifications>
+            <!-- Authentication Links -->
+            @if (Auth::guest())
+                <li><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
+                <li><a href="{{ route('register') }}">{{ __('Register') }}</a></li>
+            @else
+                @if (auth()->user()->level > 0)
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                            aria-expanded="false">
-                            {{ Auth::user()->name }} <span class="caret"></span>
+                            Admin <span class="caret"></span>
                         </a>
-
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ route('profile', auth()->user()) }}">{{ __('My Profile') }}</a></li>
-                            <li>
-                                <a href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                      style="display: none;">
-                                    {{ csrf_field() }}
-                                </form>
-                            </li>
+                        <li><a href="{{ route('pages.create') }}">{{ __('Create Page') }}</a></li>
                         </ul>
                     </li>
                 @endif
-            </ul>
+                <user-notifications></user-notifications>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                       aria-expanded="false">
+                        {{ Auth::user()->name }} <span class="caret"></span>
+                    </a>
+
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="{{ route('profile', auth()->user()) }}">{{ __('My Profile') }}</a></li>
+                        <li>
+                            <a href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                  style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+                @endif
+                </ul>
         </div>
     </div>
 </nav>

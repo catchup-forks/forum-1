@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Page;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -29,8 +30,7 @@ class PageController extends Controller
             'body' => 'required',
         ]);
 
-        $thread = Page::create([
-            'user_id' => auth()->id(),
+        $page = Page::create([
             'title' => \request('title'),
             'seo_title' => \request('seo_title'),
             'seo_description' => \request('seo_description'),
@@ -39,24 +39,19 @@ class PageController extends Controller
             'lang' => 'sv',
         ]);
 
-        $thread->subscribe();
-
-        return redirect($thread->path())->with('flash', __('Your page has been published!'));
+        return redirect($page->slug)->with('flash', __('Your page has been published!'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param $channelId
-     * @param  \App\Thread $thread
+     * @param  \App\Page $page
      * @return \Illuminate\Http\Response
      */
-    public function show($channelId, Thread $thread)
+    public function show(Page $page)
     {
-        if (auth()->check()) auth()->user()->read($thread);
+        //$page->recordVisit();
 
-        $thread->recordVisit();
-
-        return view('threads.show', ['thread' => $thread, 'title' => $thread->title]);
+        return view('pages.show', ['page' => $page, 'title' => $page->title]);
     }
 }

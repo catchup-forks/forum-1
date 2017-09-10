@@ -18,6 +18,8 @@ Route::get('/', function () {
 
     return view('welcome', ['threads' => $threads]);
 });
+
+
 //Route::resource('/threads', 'ThreadController');
 Route::post('/threads', 'ThreadController@store');
 Route::get('/threads', 'ThreadController@index');
@@ -41,6 +43,9 @@ Route::get('/notifications', 'UsersNotificationsController@index');
 
 Route::get('/profile/{user}', 'ProfileController@show')->name('profile');
 
+Route::get('/pages/create', 'PageController@create')->name('pages.create')->middleware('admin');
+Route::post('/pages', 'PageController@store')->name('pages.store')->middleware('admin');
+
 Route::resource('/workout', 'WorkoutController');
 Route::get('/my-position', 'ProfileController@getMyPosition');
 Route::post('/my-position', 'ProfileController@myPosition');
@@ -54,3 +59,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::post('/api/upload/avatar', 'UserAvatarController@store')->name('upload_avatar');
+
+Route::get('/{page}', 'PageController@show');

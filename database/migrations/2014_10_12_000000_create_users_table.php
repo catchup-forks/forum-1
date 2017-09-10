@@ -28,6 +28,7 @@ class CreateUsersTable extends Migration
             $table->string('google_token')->nullable();
             $table->string('microsoft_token')->nullable();
             $table->string('slug')->unique();
+            $table->string('level')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -111,7 +111,7 @@
 
   "workout.someone_joined_your_workout": "Någon gick med i ditt pass!",
 
-
+  "You do not have permissions to visit this page.": "Du har inte behörigheter för att nå den sidan.",
 
   "auth": {
     "failed": "Uppgifterna matchar inte något konto.",
