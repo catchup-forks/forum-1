@@ -47,6 +47,22 @@
         .ml-1 {
             margin-left: 1em;
         }
+        .btn-facebook {
+            background-color: #3B5998;
+            color: #fff;
+        }
+        .btn-facebook:hover {
+            background-color: #3B4584;
+            color: #fff;
+        }
+        .btn-google {
+            background-color: #d34836;
+            color: #fff;
+        }
+        .btn-google:hover {
+            background-color: #BF4836;
+            color: #fff;
+        }
         [v-cloak] { display: none }
     </style>
 </head>

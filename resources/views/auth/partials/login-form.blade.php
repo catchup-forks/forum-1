@@ -3,6 +3,10 @@
         <strong>{{ __('Login') }}</strong>
     </div>
     <div class="panel-body">
+
+        @include('auth.partials.social-auth')
+        <hr>
+
         <form class="form-horizontal" method="POST" action="{{ route('login') }}">
             {{ csrf_field() }}
 

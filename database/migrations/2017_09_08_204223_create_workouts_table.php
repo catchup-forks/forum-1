@@ -16,8 +16,8 @@ class CreateWorkoutsTable extends Migration
         Schema::create('workouts', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
-            $table->integer('tempo'); // In seconds
-            $table->integer('distance'); // In meters?
+            $table->integer('tempo')->nullable(); // In seconds
+            $table->integer('distance')->nullable(); // In meters?
             $table->float('latitude', 10, 6);
             $table->float('longitude', 10, 6);
             $table->dateTime('starting');

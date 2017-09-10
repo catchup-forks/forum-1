@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Support\Facades\Log;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -56,14 +57,60 @@ class LoginController extends Controller
      */
     public function handleProviderCallback($driver)
     {
-        $user = Socialite::driver($driver)->user();
+        $data = Socialite::driver($driver)->user();
+        Log::debug((array)$data);
 
-        Log::debug((array) $user);
-        // $user->token;
+        $userObject = [
+            'name' => ($data->name) ?: null,
+            'email' => $data->email,
+        ];
+
+        if (method_exists($this, 'get' . ucfirst($driver) . 'Data')) {
+            $userObject = $this->{'get' . ucfirst($driver) . 'Data'}($data, $userObject);
+        }
+
+        if (!$user = User::whereEmail($userObject['email'])->first()) {
+            $userObject[$driver . '_token'] = $data->token;
+
+            $user = User::create($userObject);
+        } else {
+            $user->{$driver . '_token'} = $data->token;
+            $user->save();
+        }
+
+        auth()->loginUsingId($user->id);
+
+        return redirect('/');
     }
 
     public function handleProviderDeauthorize($driver)
     {
         Log::info(['Deauthorize ' . $driver => request()->getContent()]);
+    }
+
+    private function getFacebookData($data, $userObject)
+    {
+        $gender = $data->user['gender'];
+
+        if ($gender != 'male' && $gender != 'female') {
+            $gender = null;
+        }
+
+        $userObject['gender'] = $gender;
+        $userObject['avatar_path'] = ($data->avatar_original) ?: null;
+
+        return $userObject;
+    }
+
+    private function getGoogleData($data, $userObject)
+    {
+        $gender = null;
+        if (isset($data->user['gender'])) $gender = $data->user['gender'];
+        if ($gender != 'male' && $gender != 'female') $gender = null;
+
+        $userObject['gender'] = $gender;
+        $userObject['avatar_path'] = ($data->avatar) ? $data->avatar . '0' : null;
+
+        return $userObject;
     }
 }

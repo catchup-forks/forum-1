@@ -17,8 +17,8 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('password');
-            $table->enum('gender', ['female', 'male', null]);
+            $table->string('password')->nullable();
+            $table->enum('gender', ['female', 'male'])->nullable();
             $table->string('phone')->nullable();
             $table->float('latitude', 10, 6)->nullable();
             $table->float('longitude', 10, 6)->nullable();
