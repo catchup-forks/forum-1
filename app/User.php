@@ -67,7 +67,10 @@ class User extends Authenticatable
         if (strpos($value, 'http')) {
             return $value;
         }
-        return asset('storage/' . $value ?: 'images/avatars/default.jpg');
+
+        if ($value) $value = 'storage/'.$value;
+
+        return asset($value ?: 'images/avatars/default.jpg');
     }
 
     public function visitedThreadCacheKey($thread)
