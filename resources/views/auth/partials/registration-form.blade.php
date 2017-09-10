@@ -60,6 +60,10 @@
                 </div>
             </div>
 
+            <div class="col-md-6 col-md-push-4">
+                <p>{!!  __('By creating an account you accept our <a href=:link>terms</a>.', ['link' => '/villkor'])  !!}</p>
+            </div>
+
             <div class="form-group">
                 <div class="col-md-6 col-md-offset-4">
                     <button type="submit" class="btn btn-primary btn-lg">
