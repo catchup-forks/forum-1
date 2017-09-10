@@ -16,7 +16,7 @@
                                     @if ($workout->tempo == null)
                                         {{ __('Unspecified') }}
                                     @else
-                                        {{ $workout->km_tempo }}/km</td>
+                                        {{ $workout->km_pace }}
                                     @endif
                                     {{ __('pace for') }} {{ $workout->distance }} km
                                 </a>
