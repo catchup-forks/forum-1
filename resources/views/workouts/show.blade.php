@@ -11,7 +11,7 @@
 
                     <ul class="list-group">
                         <li class="list-group-item">
-                            {{ $workout->km_tempo }}/km</td> tempo in
+                            {{ $workout->km_pace }} {{ __('pace for') }}
                             {{ $workout->distance }} km
                         </li>
                     </ul>
@@ -27,7 +27,7 @@
                         </tr>
                         <tr>
                             <td>{{ __("workout.tempo") }}:</td>
-                            <td>{{ $workout->km_tempo }}/km</td>
+                            <td>{{ $workout->km_pace }}</td>
                         </tr>
                         <tr>
                             <td>{{ __("workout.distance") }}:</td>

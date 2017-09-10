@@ -59,7 +59,7 @@ class WorkoutController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'tempo' => 'required|integer|unrealistic_tempo',
+            'tempo' => 'unrealistic_tempo',
             'distance' => 'required|integer',
             'latitude' => 'required',
             'longitude' => 'required',

@@ -2,7 +2,7 @@
     <form v-on:submit.prevent="submitWorkout">
 
         <div class="alert alert-info">
-            {{ lang['workout.create_explanation'] }}
+            {{ lang['Create workout explanation'] }}
         </div>
 
         <div class="alert alert-danger" v-if="form.errors.any()">
@@ -12,8 +12,22 @@
             </ul>
         </div>
 
-        <div class="form-group" :class="{ 'has-error': this.form.errors.has('tempo') }">
-            <label>{{ lang["workout.expected_tempo"] }}</label>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="input-group">
+                        <select class="form-control" v-model="chooseTempo">
+                            <option value="false">{{ lang["No specific pace"] }}</option>
+                            <option value="true">{{ lang["Set expected pace"] }}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group" :class="{ 'has-error': this.form.errors.has('tempo') }" v-if="chooseTempo">
+            <label>{{ lang["Your expected pace"] }}</label>
+
             <div class="row">
                 <div class="col-xs-5">
                     <div class="input-group">
@@ -43,7 +57,7 @@
             </div>
         </div>
         <div class="form-group" :class="{ 'has-error': this.form.errors.has('distance') }">
-            <label>{{ lang["workout.expected_distance"] }}</label>
+            <label>{{ lang["Your expected distance"] }}</label>
 
             <div class="input-group">
 
@@ -58,7 +72,7 @@
 
         </div>
         <div class="form-group" :class="{ 'has-error': this.form.errors.has('starting') }">
-            <label>{{ lang["workout.when"] }}</label>
+            <label>{{ lang["When does it start?"] }}</label>
 
             <div class="row">
                 <div class="col-xs-6">
@@ -88,7 +102,7 @@
             </button>
         </div>
         <button v-if="form.latitude != null && form.longitude != null"
-                class="btn btn-primary btn-lg">{{ lang["workout.find_people_to_run_with"] }}
+                class="btn btn-primary btn-lg">{{ lang["Save workout"] }}
         </button>
 
     </form>
@@ -107,6 +121,7 @@
         data() {
             return {
                 lang: window.lang,
+                chooseTempo: false,
                 tempoMinutes: 5,
                 tempoSeconds: 0,
                 distance: 5,
@@ -156,19 +171,14 @@
 
             submitWorkout() {
 
+                if (!this.chooseTempo) this.form.tempo = null;
+
                 axios.post('/workout', this.form)
                     .then(({data}) => {
                         flash('Your workout has been published!');
                     }).catch(error => {
-                        flash('Something went wrong when trying to publish your workout!');
-                    });
-
-                /*this.form.submit('post', '/api/workout').then(response => {
-                 if (typeof response.data !== 'undefined' && typeof response.data.id !== 'undefined') {
-                 window.user_workout = response.data.id;
-                 }
-                 //window.location.href = "/";
-                 });*/
+                    flash('Something went wrong when trying to publish your workout!');
+                });
             }
         },
         watch: {
@@ -183,6 +193,10 @@
             },
             workoutHour: function (val) {
                 this.form.starting = this.date + ' ' + val + ':00:00'
+            },
+            chooseTempo: function (val) {
+                if (typeof val == 'boolean') return;
+                this.chooseTempo = (val == "true") ? true : false;
             }
         }
     }

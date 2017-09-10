@@ -9,7 +9,7 @@ class Workout extends Model
 {
     use RecordsActivity;
 
-    protected $appends = ['km_tempo'];
+    protected $appends = ['km_pace'];
 
     protected $guarded = [];
 
@@ -23,13 +23,15 @@ class Workout extends Model
         return $this->belongsToMany('App\User', 'workout_user');
     }
 
-    public function getKmTempoAttribute()
+    public function getKmPaceAttribute()
     {
+        if ($this->tempo == null) return __('Unspecified');
+
         $min = $this->tempo/60;
         $sec = $this->tempo - ($min * 60);
 
         if ($sec < 10) $sec .= '0' + $sec;
 
-        return $min . ':' . $sec;
+        return $min . ':' . $sec . '/km';
     }
 }

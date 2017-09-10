@@ -61,8 +61,9 @@ class LoginController extends Controller
         Log::debug((array)$data);
 
         $userObject = [
-            'name' => ($data->name) ?: null,
+            'name' => $data->name,
             'email' => $data->email,
+            'slug' => str_slug($data->name),
         ];
 
         if (method_exists($this, 'get' . ucfirst($driver) . 'Data')) {

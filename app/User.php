@@ -2,13 +2,14 @@
 
 namespace App;
 
+use App\Traits\Slugable;
 use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, Slugable;
 
     /**
      * The attributes that are mass assignable.
@@ -16,7 +17,17 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'avatar_path', 'gender', 'facebook_token', 'phone', 'latitude', 'longitude',
+        'name',
+        'email',
+        'password',
+        'avatar_path',
+        'gender',
+        'facebook_token',
+        'google_token',
+        'phone',
+        'latitude',
+        'longitude',
+        'slug',
     ];
 
     /**
@@ -27,11 +38,6 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token', 'email', 'latitude', 'longitude', 'facebook_token'
     ];
-
-    public function getRouteKeyName()
-    {
-        return 'name';
-    }
 
     public function workouts()
     {
@@ -68,5 +74,4 @@ class User extends Authenticatable
     {
         return sprintf('user.%s.visited.thread.%s', $this->id, $thread->id);
     }
-
 }

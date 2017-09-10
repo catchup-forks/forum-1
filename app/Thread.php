@@ -3,12 +3,13 @@
 namespace App;
 
 use App\Traits\RecordsActivity;
+use App\Traits\Slugable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Redis;
 
 class Thread extends Model
 {
-    use RecordsActivity;
+    use RecordsActivity, Slugable;
 
     protected $guarded = [];
 
@@ -112,29 +113,5 @@ class Thread extends Model
         return 'thread.' . $this->id . '.visits';
     }
 
-    public function getRouteKeyName()
-    {
-        return 'slug';
-    }
 
-    public function setSlugAttribute($value)
-    {
-        if (static::whereSlug($slug = str_slug($value))->exists()) {
-            $slug = $this->incrementSlug($slug);
-        }
-
-        $this->attributes['slug'] = $slug;
-    }
-
-    public function incrementSlug($slug)
-    {
-        $original = $slug;
-        $count = 2;
-
-        while (static::whereSlug($slug)->exists()) {
-            $slug = $original . '-' . $count++;
-        }
-
-        return $slug;
-    }
 }

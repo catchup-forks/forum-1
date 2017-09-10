@@ -72,7 +72,11 @@
   "favorited a reply in": "favoritmarkerade ett svar i",
   "replied to": "svarade på",
 
+  "No specific pace": "Inget specifikt tempo",
+  "Set expected pace": "Välj ett väntat tempo",
   "Get your position": "Hitta din position",
+  "Unspecified": "Ospecificerat",
+  "pace for": "tempo i",
   "To perform this, you need to get your current locations coordinates.": "För att genomföra detta, behöver du hitta din nuvarande positions koordinater.",
 
   "You need to <a href=:login>login</a> or <a href=:register>create an account</a> to create or participate in a workout without being logged in.": "Du behöver <a href=:login>logga in</a> eller <a href=:register>skapa ett konto</a> för att skapa eller delta i ett pass.",
@@ -82,14 +86,15 @@
   "Create New Workout": "Skapa nytt träningspass",
   "Workouts nearby": "Träningspass i närheten",
 
-  "workout.create_explanation": "Här skapar du ett träningspass som andra kan ansluta till. Tempo är ungefär hur lång tid det kommer ta att avverka en kilometer på. Distans är hur lång hela din runda blir. Samt måste vi veta din position för att veta vart vi ska sätta upp ditt pass.",
+  "Create workout explanation": "Här skapar du ett träningspass som andra kan ansluta till. Tempo är ungefär hur lång tid det kommer ta att avverka en kilometer på. Distans är hur lång hela din runda blir. Samt måste vi veta din position för att veta vart vi ska sätta upp ditt pass.",
 
-  "workout.create_workout": "Skapa träningspass",
-  "workout.workouts_nearby": "Träningspass i närheten",
-  "workout.expected_tempo": "Ditt tänkta tempo",
-  "workout.expected_distance": "Din tänkta distans",
-  "workout.when": "När startar passet?",
-  "workout.find_people_to_run_with": "Hitta personer att springa med",
+  "Create workout": "Skapa träningspass",
+  "Your expected pace": "Ditt tänkta tempo",
+  "Your expected distance": "Din tänkta distans",
+  "When does it start?": "När börjar passet?",
+  "Save workout": "Spara träningspass",
+  "Your workout has been published!": "Ditt träningspass har publicerats!",
+  "Something went wrong when trying to publish your workout!": "Något gick fel när ditt träningspass skulle publiceras!",
 
   "workout.start": "Börjar",
   "workout.attendees": "Deltagare",

@@ -24,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
 
         Validator::extend('unrealistic_tempo', function ($attribute, $value, $parameters, $validator) {
-            return $value > 149;
+            return ($value > 149) || $value == null;
         });
 
         Validator::extend('not_attending_workout', function ($attribute, $value, $parameters, $validator) {

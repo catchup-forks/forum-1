@@ -13,8 +13,12 @@
                         @foreach($workouts as $workout)
                             <li class="list-group-item">
                                 <a href="{{ route('workout.show', ['workout' => $workout]) }}">
-                                    {{ $workout->km_tempo }}/km</td> tempo in
-                                    {{ $workout->distance }} km
+                                    @if ($workout->tempo == null)
+                                        {{ __('Unspecified') }}
+                                    @else
+                                        {{ $workout->km_tempo }}/km</td>
+                                    @endif
+                                    {{ __('pace for') }} {{ $workout->distance }} km
                                 </a>
                             </li>
                         @endforeach
