@@ -52,7 +52,7 @@
                         <div class="panel-body">
                             <p>{!!  __('This thread was created :time by :link', [
                         'time' => $thread->created_at->diffForHumans(),
-                        'link' => '<a href="'.route('profile', $thread->creator->name).'">'.$thread->creator->name.'</a>'
+                        'link' => '<a href="'.route('profile', $thread->creator->slug).'">'.$thread->creator->name.'</a>'
                         ] ) !!}. {!! __('The thread has :count replies', ['count' => '<span v-html="repliesCount"></span>']) !!}.</p>
 
                             <hr>

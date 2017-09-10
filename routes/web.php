@@ -39,7 +39,6 @@ Route::delete('/replies/{reply}/favorite', 'FavoriteController@destroy');
 Route::delete('/notifications/{notification}', 'UsersNotificationsController@destroy');
 Route::get('/notifications', 'UsersNotificationsController@index');
 
-Route::get('/profile/{user}', 'ProfileController@show')->name('profile');
 
 Route::get('/pages/create', 'PageController@create')->name('pages.create')->middleware('admin');
 Route::post('/pages', 'PageController@store')->name('pages.store')->middleware('admin');
@@ -58,6 +57,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('/api/upload/avatar', 'UserAvatarController@store')->name('upload_avatar');
 
-Route::get('/kanal/{channel}', 'ThreadController@index');
+Route::get('/profile/{user}', 'ProfileController@show')->name('profile');
 Route::get('/{channel}/{thread}', 'ThreadController@show')->name('thread');
+Route::get('/kanal/{channel}', 'ThreadController@index');
 Route::get('/{page}', 'PageController@show');
