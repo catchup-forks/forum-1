@@ -8,10 +8,12 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <div class="level">
-                                <div class="flex">
+                                <div>
                                     <img class="mr-1 img-rounded" src="{{ $thread->creator->avatar_path }}" width="40" alt="{{ $thread->creator->name }}">
-                                    <a href="{{ route('profile', $thread->creator) }}">{{ $thread->creator->name }}</a> {{ __('posted') }}
-                                    : {{ $thread->title }}
+                                </div>
+                                <div class="flex">
+                                    <h1 style="font-size: 24px; margin: 0">{{ $thread->title }}</h1>
+                                    <a href="{{ route('profile', $thread->creator) }}">{{ $thread->creator->name }}</a>
                                 </div>
 
                                 @can ('delete', $thread)
