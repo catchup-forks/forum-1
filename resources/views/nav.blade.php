@@ -55,7 +55,7 @@
                        aria-expanded="false">{{ __('Races') }} <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         @foreach($races as $race)
-                            <li><a href="{{ $race->slug }}">{{ $race->title }}</a></li>
+                            <li><a href="/{{ $race->slug }}">{{ $race->title }}</a></li>
                         @endforeach
                     </ul>
                 </li>
