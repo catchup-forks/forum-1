@@ -1,5 +1,5 @@
 <ul class="list-group">
-    @foreach($threads as $thread)
+    @foreach($latestThreads as $thread)
         <li class="list-group-item">
             <a href="{{ $thread->path() }}">
                 {{ $thread->title }}

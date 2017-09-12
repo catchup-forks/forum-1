@@ -14,9 +14,9 @@
 Route::get('/', function () {
     if (auth()->check()) return redirect('home');
 
-    $threads = \App\Thread::latest()->take(15)->get();
+    $latestThreads = \App\Thread::orderBy('updated_at', 'desc')->take(15)->get();
 
-    return view('welcome', ['threads' => $threads]);
+    return view('welcome', ['latestThreads' => $latestThreads]);
 });
 
 
