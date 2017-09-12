@@ -50,6 +50,15 @@
                         @endforeach
                     </ul>
                 </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">{{ __('Races') }} <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        @foreach($races as $race)
+                            <li><a href="{{ $race->slug }}">{{ $race->title }}</a></li>
+                        @endforeach
+                    </ul>
+                </li>
             </ul>
 
             <!-- Right Side Of Navbar -->

@@ -2,8 +2,17 @@
 
 @section('content')
     <div class="container">
+        @if ($title)
+            <div class="row">
+                <div class="col-xs-12">
+                    <h1>{{ $title }}</h1>
+                </div>
+            </div>
+        @endif
+
         <div class="row">
             <div class="col-md-8">
+
                 {{ $threads->links() }}
 
                 @forelse($threads as $thread)

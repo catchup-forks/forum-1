@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Page;
 use App\User;
 use App\Channel;
 use App\Workout;
@@ -50,7 +51,11 @@ class AppServiceProvider extends ServiceProvider
             $channels = Cache::rememberForever('channels', function () {
                 return Channel::all();
             });
-            $view->with('channels', $channels);
+
+            $races = Cache::rememberForever('races', function () {
+                return Page::where('category', 'races')->orderBy('title')->get();
+            });
+            $view->with(['races' => $races, 'channels' => $channels]);
         });
 
         Carbon::setLocale(env('LOCALE', 'en'));
