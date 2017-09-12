@@ -24,7 +24,7 @@ class ThreadController extends Controller
      */
     public function index(Channel $channel, ThreadFilters $filter)
     {
-        $threads = Thread::latest()->filter($filter);
+        $threads = Thread::filter($filter);
 
         if ($channel->exists) {
             $title = $channel->name;
@@ -42,7 +42,7 @@ class ThreadController extends Controller
 
         }
 
-        $threads = $threads->paginate();
+        $threads = $threads->orderBy('updated_at' , 'desc')->paginate();
 
         if (request()->wantsJson()) return $threads;
 
