@@ -24,12 +24,7 @@ Route::get('/', function () {
 Route::post('/threads', 'ThreadController@store');
 Route::get('/diskussion', 'ThreadController@index');
 Route::get('/threads/create', 'ThreadController@create');
-Route::delete('/threads/{channel}/{thread}', 'ThreadController@destroy');
-Route::post('/threads/{channel}/{thread}/subscriptions', 'ThreadSubscriptionController@store')->middleware('auth');
-Route::delete('/threads/{channel}/{thread}/subscriptions', 'ThreadSubscriptionController@destroy')->middleware('auth');
 
-Route::get('/threads/{channel}/{thread}/replies', 'ReplyController@index');
-Route::post('/threads/{channel}/{thread}/replies', 'ReplyController@store')->name('reply_to_thead');
 Route::delete('/replies/{reply}', 'ReplyController@destroy');
 Route::patch('/replies/{reply}', 'ReplyController@update');
 
@@ -60,4 +55,10 @@ Route::post('/api/upload/avatar', 'UserAvatarController@store')->name('upload_av
 Route::get('/profile/{user}', 'ProfileController@show')->name('profile');
 Route::get('/kanal/{channel}', 'ThreadController@index');
 Route::get('/{channel}/{thread}', 'ThreadController@show')->name('thread');
+Route::delete('{channel}/{thread}', 'ThreadController@destroy');
+Route::post('/{channel}/{thread}/subscriptions', 'ThreadSubscriptionController@store')->middleware('auth');
+Route::delete('{channel}/{thread}/subscriptions', 'ThreadSubscriptionController@destroy')->middleware('auth');
+
+Route::get('{channel}/{thread}/replies', 'ReplyController@index');
+Route::post('{channel}/{thread}/replies', 'ReplyController@store')->name('reply_to_thead');
 Route::get('/{page}', 'PageController@show');
