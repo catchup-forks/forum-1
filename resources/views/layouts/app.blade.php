@@ -35,7 +35,7 @@
     @endif
 
     <meta property="og:site_name" content="{{ config('app.name', 'Laravel') }}"/>
-    <meta property="og:image" content="https://mate.run/images/MateRun_logo.png"/>
+    <meta property="og:image" content="https://mate.run/images/materun-social-media-image.jpg"/>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
