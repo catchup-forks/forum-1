@@ -54,6 +54,9 @@ Route::post('/api/upload/avatar', 'UserAvatarController@store')->name('upload_av
 
 Route::get('/profile/{user}', 'ProfileController@show')->name('profile');
 Route::get('/kanal/{channel}', 'ThreadController@index');
+Route::get('/threads/{channel}', function($channel) {
+    return redirect('/kanal/' . $channel);
+});
 Route::get('/{channel}/{thread}', 'ThreadController@show')->name('thread');
 Route::delete('{channel}/{thread}', 'ThreadController@destroy');
 Route::post('/{channel}/{thread}/subscriptions', 'ThreadSubscriptionController@store')->middleware('auth');
