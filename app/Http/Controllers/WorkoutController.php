@@ -20,8 +20,6 @@ class WorkoutController extends Controller
             return redirect('/my-position');
         }
 
-        $threads = Thread::latest()->get();
-
         $nearbys = DB::select('SELECT * FROM(SELECT id, `starting` as stdate, distance, tempo, latitude, longitude,
                   111.045 * DEGREES(ACOS(COS(RADIANS(latpoint))
                       * COS(RADIANS(latitude))
@@ -48,7 +46,9 @@ class WorkoutController extends Controller
 
         if (\request()->wantsJson()) return $workouts;
 
-        return view('workouts.index', ['workouts' => $workouts, 'threads' => $threads]);
+        $latestThreads = \App\Thread::orderBy('updated_at', 'desc')->take(15)->get();
+
+        return view('workouts.index', ['workouts' => $workouts, 'latestThreads' => $latestThreads]);
     }
 
     public function create()
