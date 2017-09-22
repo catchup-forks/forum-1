@@ -137,8 +137,8 @@
                     tempo: 300,
                     distance: 5,
                     starting: null,
-                    latitude: null,
-                    longitude: null,
+                    latitude: (window.forum.user.latitude) ? window.forum.user.latitude : null,
+                    longitude: (window.forum.user.longitude) ? window.forum.user.longitude : null,
                     description: ''
                 }),
                 getLocationAutomatically: true,
