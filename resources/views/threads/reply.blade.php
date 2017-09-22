@@ -1,4 +1,4 @@
-<reply :data="{{ $reply }}" inline-template v-cloak>
+<div>
     <div class="panel panel-default">
         <div id="reply-{{ $reply->id }}" class="panel-heading">
             <div class="level">
@@ -20,14 +20,16 @@
             </div>
         </div>
         <div class="panel-body">
-            <div v-if="editing">
-                <div class="form-group">
-                    <textarea class="form-control" v-model="body"></textarea>
+            @can('update', $reply)
+                <div v-if="editing">
+                    <div class="form-group">
+                        <textarea class="form-control" v-model="body"></textarea>
+                    </div>
+                    <button class="btn btn-primary btn-xs" @click="update">Save</button>
+                    <button class="btn btn-link btn-xs" @click="editing = false">Cancel</button>
                 </div>
-                <button class="btn btn-primary btn-xs" @click="update">Save</button>
-                <button class="btn btn-link btn-xs" @click="editing = false">Cancel</button>
-            </div>
-            <article v-else v-text="body">
+            @endcan
+            <article>
                 {{ $reply->body }}
             </article>
         </div>
@@ -39,4 +41,4 @@
             </div>
         @endcan
     </div>
-</reply>
+</div>
