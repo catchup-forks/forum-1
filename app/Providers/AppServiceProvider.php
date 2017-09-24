@@ -55,7 +55,12 @@ class AppServiceProvider extends ServiceProvider
             $races = Cache::rememberForever('races', function () {
                 return Page::where('category', 'races')->orderBy('title')->get();
             });
-            $view->with(['races' => $races, 'channels' => $channels]);
+
+            $runningGroups = Cache::rememberForever('running-groups', function () {
+                return Page::where('category', 'running-groups')->orderBy('title')->get();
+            });
+
+            $view->with(['races' => $races, 'channels' => $channels, 'runningGroups' => $runningGroups]);
         });
 
         Carbon::setLocale(env('LOCALE', 'en'));
