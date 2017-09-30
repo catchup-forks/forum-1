@@ -33,6 +33,7 @@
                     </ul>
                 </li>
                 <li><a href="/threads/create">{{ __('New Thread') }}</a></li>
+                <li><a href="/loparskor">Löparskor</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false">{{ __('Channels') }} <span class="caret"></span></a>
