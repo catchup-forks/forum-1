@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Reply;
+use App\Thread;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -78,5 +79,22 @@ class ParticipateInForumTest extends TestCase
         $reply = create('App\Reply');
 
         $this->patch('/replies/' . $reply->id, ['body' => 'hej']);
+    }
+
+    public function testAThreadShouldHaveAUniqueSlug()
+    {
+        $this->signIn();
+
+        $thread = create('App\Thread', ['title' => 'My Title', 'slug' => 'my-title']);
+
+        $this->assertEquals($thread->fresh()->slug, 'my-title');
+
+        $this->post('/threads', $thread->toArray());
+
+        $this->assertTrue(Thread::where('slug', 'my-title-2')->exists());
+
+        $this->post('/threads', $thread->toArray());
+
+        $this->assertTrue(Thread::where('slug', 'my-title-3')->exists());
     }
 }

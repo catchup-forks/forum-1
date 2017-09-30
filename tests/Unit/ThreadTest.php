@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use Illuminate\Support\Facades\Redis;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -32,7 +33,7 @@ class ThreadTest extends TestCase
     public function testPath(){
         $thread = create('App\Thread');
 
-        $this->assertEquals('/threads/' . $thread->channel->slug . '/' . $thread->id, $thread->path());
+        $this->assertEquals('/threads/' . $thread->channel->slug . '/' . $thread->slug, $thread->path());
     }
 
     public function testCanAddReply(){
@@ -70,5 +71,22 @@ class ThreadTest extends TestCase
         $thread->unsubscribe($user->id);
 
         $this->assertEquals(0, $thread->subscriptions()->where('user_id', $user->id)->count() );
+    }
+
+    public function testAThreadRecordEachVisit()
+    {
+        $thread = create('App\Thread');
+        Redis::del('thread.' . $thread->id . '.visits');
+
+        $this->assertSame(0, $thread->visits);
+
+        $thread->recordVisit();
+
+        $this->assertEquals(1, $thread->visits);
+
+        $thread->recordVisit();
+
+        $this->assertEquals(2, $thread->visits);
+
     }
 }

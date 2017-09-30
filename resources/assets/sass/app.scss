@@ -5,6 +5,10 @@
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
+body {
+  background-color: rgba(140, 193, 49, .07);
+}
+
 .navbar-default .navbar-brand {
   background: url('/images/MateRun_logo.png') no-repeat center center;
   background-size: contain;
@@ -27,8 +31,7 @@
 }
 
 .navbar-default .navbar-brand,
-.navbar-default .navbar-nav > li > a,
-.navbar-default .navbar-nav .open .dropdown-menu > li > a {
+.navbar-default .navbar-nav > li > a {
   color: #fff;
 }
 

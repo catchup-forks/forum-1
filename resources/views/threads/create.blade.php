@@ -5,7 +5,9 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">{{ __('Create A New Thread') }}</div>
+                    <div class="panel-heading">
+                        <strong>{{ __('Create A New Thread') }}</strong>
+                    </div>
 
                     <div class="panel-body">
                         <form method="POST" action="/threads">

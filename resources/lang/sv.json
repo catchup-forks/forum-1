@@ -5,6 +5,8 @@
   "Popular All Time": "Mest populära någonsin",
   "New Thread": "Ny tråd",
   "Channels": "Kanaler",
+  "Races": "Lopp",
+  "Running groups": "Löpargrupper",
 
   "Create A New Thread": "Skapa ny tråd",
   "Choose A Channel:": "Välj en kanal:",
@@ -37,13 +39,15 @@
   "Your reply is updated!": "Ditt svar är uppdaterat!",
   "The thread has :count replies": "Tråden har :count svar",
   "Have something to say?": "Har du något att säga?",
-  "Please <a href=:link>sign in</a> to participate in this discussion": "<a href=:link>Logga in</a> för att delta i diskussionen.",
+  "Please <a href=:register>create account</a> or <a href=:login>sign in</a> to participate in this discussion": "<a href=:register>Skapa konto</a> eller <a href=:login>logga in</a> för att delta i diskussionen.",
+  "visits": "visningar",
   "answer": "svar",
   "answers": "svar",
   "There are no threads here.": "Det finns inga trådar här.",
   "Threads by :name": "Trådar av :name",
   "Popular threads": "Populära trådar",
   "Unanswered Threads": "Obesvarade trådar",
+  "Last updated threads": "Senast uppdaterade trådar",
 
   "My Profile": "Min profil",
   "Signed Up :time": "Skapade konto för :time",
@@ -59,8 +63,62 @@
   "Forgot Your Password?": "Glömt ditt lösenord?",
   "Reset Password": "Återställ lösenord",
   "Send Password Reset Link": "Skicka länk för återställning",
+  "Sign in with Facebook": "Logga in med Facebook",
+  "Sign in with Google": "Logga in med Google",
+  "By creating an account you accept our <a href=:link>terms</a>.": "Genom att skapa ett konto godkänner du våra <a href=:link>villkor</a>.",
 
   "Name": "Namn",
+
+  "loading": "Laddar...",
+  "Update my location": "Uppdatera min position",
+  "find_my_location": "Hitta min position",
+  "found_your_location": "Vi hittade din position!",
+  "minute_short": "min",
+  "second_short": "sek",
+  "time_prefix": "kl.",
+  "favorited a reply in": "favoritmarkerade ett svar i",
+  "replied to": "svarade på",
+
+  "No specific pace": "Inget specifikt tempo",
+  "Set expected pace": "Välj ett väntat tempo",
+  "Get your position": "Hitta din position",
+  "Unspecified": "Ospecificerat",
+  "pace for": "tempo i",
+  "To perform this, you need to get your current locations coordinates.": "För att genomföra detta, behöver du hitta din nuvarande positions koordinater.",
+
+  "You need to <a href=:login>login</a> or <a href=:register>create an account</a> to create or participate in a workout without being logged in.": "Du behöver <a href=:login>logga in</a> eller <a href=:register>skapa ett konto</a> för att skapa eller delta i ett pass.",
+
+  "Your avatar has been updated!": "Din profilbild har uppdaterats!",
+  "Workouts": "Träningspass",
+  "Create New Workout": "Skapa nytt träningspass",
+  "Workouts nearby": "Träningspass i närheten",
+
+  "Create workout explanation": "Här skapar du ett träningspass som andra kan ansluta till. Tempo är ungefär hur lång tid det kommer ta att avverka en kilometer på. Distans är hur lång hela din runda blir. Samt måste vi veta din position för att veta vart vi ska sätta upp ditt pass.",
+
+  "Create workout": "Skapa träningspass",
+  "Your expected pace": "Ditt tänkta tempo",
+  "Your expected distance": "Din tänkta distans",
+  "When does it start?": "När börjar passet?",
+  "Save workout": "Spara träningspass",
+  "Your workout has been published!": "Ditt träningspass har publicerats!",
+  "Something went wrong when trying to publish your workout!": "Något gick fel när ditt träningspass skulle publiceras!",
+
+  "workout.start": "Börjar",
+  "workout.attendees": "Deltagare",
+  "workout.tempo": "Tempo",
+  "workout.distance": "Distans",
+  "workout.how_far_away": "Hur långt bort?",
+  "workout.join": "Delta",
+  "workout.leave": "Lämna",
+  "workout.description": "Beskrivning av passet",
+  "workout.your_workout": "Ditt pass",
+  "workout.proposed_meeting_place": "Föreslagen mötesplats",
+  "workout.meeting_place_bus_station": "Busshållplats",
+  "workout.how_far_can_you_travel": "Hur långt bort får passet vara?",
+
+  "workout.someone_joined_your_workout": "Någon gick med i ditt pass!",
+
+  "You do not have permissions to visit this page.": "Du har inte behörigheter för att nå den sidan.",
 
   "auth": {
     "failed": "Uppgifterna matchar inte något konto.",

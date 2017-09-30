@@ -3,7 +3,8 @@
         <div :id="'reply-'+data.id" class="panel-heading">
             <div class="level">
                 <h5 class="flex">
-                    <a :href="'/profile/' + data.owner.name">{{ data.owner.name }}</a> :
+                    <img class="mr-1 img-rounded" :src="data.owner.avatar_path" width="40">
+                    <a :href="'/profile/' + data.owner.slug">{{ data.owner.name }}</a> :
                     <span v-text="ago"></span>
                 </h5>
 

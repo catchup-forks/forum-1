@@ -3,11 +3,13 @@
 namespace App;
 
 use App\Traits\RecordsActivity;
+use App\Traits\Slugable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Redis;
 
 class Thread extends Model
 {
-    use RecordsActivity;
+    use RecordsActivity, Slugable;
 
     protected $guarded = [];
 
@@ -27,7 +29,7 @@ class Thread extends Model
 
     public function path()
     {
-        return '/threads/' . $this->channel->name . '/' . $this->id;
+        return '/' . $this->channel->slug . '/' . $this->slug;
     }
 
     public function replies()
@@ -93,4 +95,23 @@ class Thread extends Model
 
         return $this->updated_at > cache($key);
     }
+
+    public function recordVisit()
+    {
+        Redis::incr($this->visitedCacheKey());
+
+        return $this;
+    }
+
+    public function getVisitsAttribute()
+    {
+        return Redis::get($this->visitedCacheKey()) ?: 0;
+    }
+
+    public function visitedCacheKey()
+    {
+        return 'thread.' . $this->id . '.visits';
+    }
+
+
 }

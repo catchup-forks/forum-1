@@ -3,13 +3,18 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Utloggad</div>
+            <div class="col-md-8">
 
-                    <div class="panel-body">
-                        You are not logged in!
+                @include('auth.partials.registration-form')
+
+                <img class="img-responsive mb-1" src="/images/MateRun_logo.png" alt="MateRun Logo">
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <strong>{{ __('Last updated threads') }}</strong>
                     </div>
+                    @include('threads.partials.latest')
                 </div>
             </div>
         </div>

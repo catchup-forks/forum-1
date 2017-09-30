@@ -2,13 +2,14 @@
 
 namespace App;
 
+use App\Traits\Slugable;
 use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, Slugable;
 
     /**
      * The attributes that are mass assignable.
@@ -16,7 +17,17 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name',
+        'email',
+        'password',
+        'avatar_path',
+        'gender',
+        'facebook_token',
+        'google_token',
+        'phone',
+        'latitude',
+        'longitude',
+        'slug',
     ];
 
     /**
@@ -25,12 +36,12 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token', 'email',
+        'password', 'remember_token', 'email', 'facebook_token'
     ];
 
-    public function getRouteKeyName()
+    public function workouts()
     {
-        return 'name';
+        return $this->belongsToMany(Workout::class, 'workout_user');
     }
 
     public function threads()
@@ -49,6 +60,17 @@ class User extends Authenticatable
             $this->visitedThreadCacheKey($thread),
             Carbon::now()
         );
+    }
+
+    public function getAvatarPathAttribute($value)
+    {
+        if (strpos($value, 'http')) {
+            return $value;
+        }
+
+        if ($value) $value = 'storage/'.$value;
+
+        return asset($value ?: 'images/avatars/default.jpg');
     }
 
     public function visitedThreadCacheKey($thread)

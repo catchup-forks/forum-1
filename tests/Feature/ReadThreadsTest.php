@@ -34,7 +34,7 @@ class ReadThreadsTest extends TestCase
 
     public function testAUserCanBrowseASingleThread()
     {
-        $response = $this->get('/threads/' . $this->thread->channel->name . '/' . $this->thread->id);
+        $response = $this->get('/threads/' . $this->thread->channel->name . '/' . $this->thread->slug);
         $response->assertSee($this->thread->body);
     }
 

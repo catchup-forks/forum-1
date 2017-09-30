@@ -14,16 +14,19 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
-
+    $name = $faker->name;
     return [
-        'name' => $faker->name,
+        'name' => $name,
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
+        'slug' => str_slug($name),
     ];
 });
 
 $factory->define(App\Thread::class, function(Faker\Generator $faker) {
+    $title = $faker->sentence;
+
     return [
         'user_id' => function() {
             return factory('App\User')->create()->id;
@@ -31,8 +34,9 @@ $factory->define(App\Thread::class, function(Faker\Generator $faker) {
         'channel_id' => function() {
             return factory('App\Channel')->create()->id;
         },
-        'title' => $faker->sentence,
+        'title' => $title,
         'body' => $faker->paragraph,
+        'slug' => str_slug($title)
     ];
 });
 
@@ -66,6 +70,5 @@ $factory->define(\Illuminate\Notifications\DatabaseNotification::class, function
         },
         'notifiable_type' => 'App\User',
         'data' => ['foo' => 'bar'],
-
     ];
 });

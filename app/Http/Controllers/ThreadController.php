@@ -24,7 +24,7 @@ class ThreadController extends Controller
      */
     public function index(Channel $channel, ThreadFilters $filter)
     {
-        $threads = Thread::latest()->filter($filter);
+        $threads = Thread::filter($filter);
 
         if ($channel->exists) {
             $title = $channel->name;
@@ -42,7 +42,7 @@ class ThreadController extends Controller
 
         }
 
-        $threads = $threads->paginate();
+        $threads = $threads->orderBy('updated_at' , 'desc')->paginate();
 
         if (request()->wantsJson()) return $threads;
 
@@ -78,6 +78,7 @@ class ThreadController extends Controller
             'channel_id' => \request('channel_id'),
             'title' => \request('title'),
             'body' => \request('body'),
+            'slug' => str_slug(\request('title')),
         ]);
 
         $thread->subscribe();
@@ -95,6 +96,8 @@ class ThreadController extends Controller
     public function show($channelId, Thread $thread)
     {
         if (auth()->check()) auth()->user()->read($thread);
+
+        $thread->recordVisit();
 
         return view('threads.show', ['thread' => $thread, 'title' => $thread->title]);
     }

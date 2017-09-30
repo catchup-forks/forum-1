@@ -32,9 +32,13 @@ window.Vue.prototype.authorize = function(handler) {
  */
 
 Vue.component('flash', require('./components/Flash.vue'));
-Vue.component('replies', require('./components/Replies.vue'));
 Vue.component('reply', require('./components/Reply.vue'));
+Vue.component('replies', require('./components/Replies.vue'));
+Vue.component('favorite', require('./components/Favorite.vue'));
 Vue.component('paginator', require('./components/Paginator.vue'));
+Vue.component('avatar-form', require('./components/AvatarForm.vue'));
+Vue.component('create-workout', require('./components/CreateWorkout.vue'));
+Vue.component('get-my-position', require('./components/GetMyPosition.vue'));
 Vue.component('subscribe-button', require('./components/SubscribeButton.vue'));
 Vue.component('user-notifications', require('./components/UserNotifications.vue'));
 

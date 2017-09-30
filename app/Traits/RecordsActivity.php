@@ -1,13 +1,17 @@
 <?php namespace App\Traits;
 
 use App\Activity;
+use Illuminate\Support\Facades\Log;
 
 trait RecordsActivity
 {
 
     protected static function bootRecordsActivity()
     {
-        if (auth()->guest()) return;
+        if (auth()->guest()) {
+            Log::info('Tried record activity, but user was not logged in.');
+            return;
+        }
 
         foreach (static::getRecordEvents() as $event) {
             static::$event(function ($model) use ($event) {
