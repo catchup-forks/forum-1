@@ -137,6 +137,16 @@
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
+<script>
+    (function (win, doc, tag, src, name, a, m) {
+        win['IncleadObject'] = name;
+        a = doc.createElement(tag),
+            m = doc.getElementsByTagName(tag)[0];
+        a.async = 1;
+        a.src = src;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://analytics.inclead.com/api/statistics/1', 'inclead');
+</script>
 
 <script async src="https://www.googletagmanager.com/gtag/js?id={{ env('GOOGLE_ANALYTICS_CODE') }}"></script>
 <script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag('js', new Date());gtag('config', '{{  env('GOOGLE_ANALYTICS_CODE') }}');</script>
